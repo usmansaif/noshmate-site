@@ -393,11 +393,14 @@
     width: 84%;
     height: 84%;
     border-radius: 50%;
-    background: linear-gradient(160deg, #fff 0%, var(--cream) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 96px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 6px rgba(255,255,255,0.9);
+  }
+
+  .plate-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .card-order {
@@ -561,24 +564,25 @@
   .menu-photo {
     height: 170px;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 58px;
-    background: var(--grad-green);
     overflow: hidden;
+    background: var(--paper);
   }
+
+  .menu-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .menu-card:hover .menu-photo img { transform: scale(1.06); }
 
   .menu-photo::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(120px 90px at 20% 15%, rgba(255,255,255,0.25), transparent 60%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 35%);
   }
-
-  .menu-card:nth-child(2) .menu-photo { background: var(--grad-orange); }
-  .menu-card:nth-child(3) .menu-photo { background: linear-gradient(135deg, #0EA5A5, #34C77B); }
-  .menu-card:nth-child(4) .menu-photo { background: linear-gradient(135deg, #7A5AF8, #B69CFF); }
 
   .menu-tag-float {
     position: absolute;
@@ -608,12 +612,6 @@
     line-height: 1.55;
   }
 
-  .menu-price {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .menu-price .price {
     font-weight: 800;
     color: var(--nosh-green);
@@ -621,20 +619,14 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  .menu-add {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--ink);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.25s ease, transform 0.25s ease;
+  .menu-note {
+    text-align: center;
+    max-width: 560px;
+    margin: 44px auto 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.6;
   }
-
-  .menu-add:hover { background: var(--nosh-green); transform: rotate(90deg); }
-  .menu-add svg { width: 15px; height: 15px; }
 
   /* ---------- Areas ---------- */
   .areas { padding: 90px 0; }
@@ -898,7 +890,7 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .hamburger { display: flex; }
 
     .nav-links {
@@ -946,7 +938,9 @@
     }
 
     .overlay.show { display: block; }
+  }
 
+  @media (max-width: 768px) {
     .hero h1 { font-size: 38px; letter-spacing: -1px; }
     .hero p.lead { font-size: 16px; }
     .stat-num { font-size: 24px; }
@@ -1038,7 +1032,9 @@
 
       <div class="hero-visual reveal in d2">
         <div class="plate">
-          <div class="plate-inner">🍱</div>
+          <div class="plate-inner">
+            <img src="https://images.pexels.com/photos/14164040/pexels-photo-14164040.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Packed office lunch boxes with rice, vegetables and mains, ready for delivery" loading="eager">
+          </div>
         </div>
 
         <div class="float-card card-order">
@@ -1122,60 +1118,70 @@
   <section class="menu" id="menu">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Today's Picks</span>
+        <span class="eyebrow">Daily Rotating Menu</span>
         <h2>A Taste of Our Menu</h2>
-        <p>Rotating daily menu with local favorites and healthy options.</p>
+        <p>We cook multiple menu options every day — browse today's picks below, then choose one when you place your order.</p>
       </div>
 
       <div class="menu-grid">
         <div class="menu-card reveal d1">
-          <div class="menu-photo">🍛<span class="menu-tag-float">Best Seller</span></div>
+          <div class="menu-photo">
+            <img src="https://images.pexels.com/photos/29685076/pexels-photo-29685076.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chicken karahi served in a traditional wok" loading="lazy">
+            <span class="menu-tag-float">Best Seller</span>
+          </div>
           <div class="menu-body">
             <h3>Chicken Karahi Combo</h3>
             <p>Chicken karahi, 2 rotis &amp; salad.</p>
             <div class="menu-price">
               <span class="price">Rs. 450</span>
-              <span class="menu-add"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
             </div>
           </div>
         </div>
 
         <div class="menu-card reveal d2">
-          <div class="menu-photo">🍚<span class="menu-tag-float">Popular</span></div>
+          <div class="menu-photo">
+            <img src="https://images.pexels.com/photos/4224304/pexels-photo-4224304.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chicken biryani garnished with mint" loading="lazy">
+            <span class="menu-tag-float">Popular</span>
+          </div>
           <div class="menu-body">
             <h3>Chicken Biryani</h3>
             <p>Signature biryani with raita &amp; salad.</p>
             <div class="menu-price">
               <span class="price">Rs. 380</span>
-              <span class="menu-add"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
             </div>
           </div>
         </div>
 
         <div class="menu-card reveal d3">
-          <div class="menu-photo">🥗<span class="menu-tag-float">Healthy</span></div>
+          <div class="menu-photo">
+            <img src="https://images.pexels.com/photos/37354295/pexels-photo-37354295.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Grilled chicken bowl with rice and salsa" loading="lazy">
+            <span class="menu-tag-float">Healthy</span>
+          </div>
           <div class="menu-body">
             <h3>Grilled Chicken Bowl</h3>
             <p>Grilled chicken, veggies &amp; brown rice.</p>
             <div class="menu-price">
               <span class="price">Rs. 420</span>
-              <span class="menu-add"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
             </div>
           </div>
         </div>
 
         <div class="menu-card reveal d4">
-          <div class="menu-photo">🍲<span class="menu-tag-float">Budget Pick</span></div>
+          <div class="menu-photo">
+            <img src="https://images.pexels.com/photos/28674708/pexels-photo-28674708.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Daal served with steamed rice" loading="lazy">
+            <span class="menu-tag-float">Budget Pick</span>
+          </div>
           <div class="menu-body">
             <h3>Daal Chawal Deal</h3>
             <p>Daal, steamed rice &amp; fried salan.</p>
             <div class="menu-price">
               <span class="price">Rs. 280</span>
-              <span class="menu-add"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
             </div>
           </div>
         </div>
       </div>
+
+      <p class="menu-note reveal">Menu changes daily — message us on WhatsApp each morning to see today's full lineup and choose your meal.</p>
     </div>
   </section>
 
