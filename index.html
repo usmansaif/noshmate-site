@@ -23,6 +23,7 @@
 
     --grad-green: linear-gradient(135deg, #0F3E22 0%, #1F7A47 60%, #34C77B 100%);
     --grad-orange: linear-gradient(135deg, #F2820C 0%, #FFA84D 100%);
+    --grad-teal: linear-gradient(135deg, #0EA5A5, #34C77B);
     --shadow-sm: 0 6px 18px rgba(18, 24, 26, 0.06);
     --shadow-md: 0 16px 40px rgba(18, 24, 26, 0.10);
     --shadow-lg: 0 30px 70px rgba(15, 62, 34, 0.18);
@@ -68,6 +69,8 @@
   .reveal.d2 { transition-delay: .2s; }
   .reveal.d3 { transition-delay: .3s; }
   .reveal.d4 { transition-delay: .4s; }
+  .reveal.d5 { transition-delay: .5s; }
+  .reveal.d6 { transition-delay: .6s; }
 
   /* ---------- Nav ---------- */
   header {
@@ -84,16 +87,31 @@
   }
 
   nav {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 14px 12px 22px;
+    border-radius: 999px;
+    isolation: isolate;
+  }
+
+  /* Frosted background lives on a pseudo-element, not on nav itself, so nav
+     doesn't become a containing block for its position:fixed drawer child
+     (backdrop-filter on an ancestor repositions fixed descendants relative
+     to it instead of the viewport, which left a sliver of the closed mobile
+     drawer visible at the screen edge). */
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 999px;
+    border-radius: inherit;
     box-shadow: 0 10px 34px rgba(18, 24, 26, 0.08);
+    z-index: -1;
   }
 
   .logo {
@@ -116,6 +134,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 6px 14px rgba(15, 62, 34, 0.35);
+    flex-shrink: 0;
   }
 
   .logo-mark svg { width: 18px; height: 18px; }
@@ -125,16 +144,17 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
   }
 
   .nav-links a.nav-link {
     color: var(--ink-soft);
     font-weight: 600;
-    font-size: 14.5px;
-    padding: 9px 16px;
+    font-size: 14px;
+    padding: 9px 13px;
     border-radius: 999px;
     transition: color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
   }
 
   .nav-links a.nav-link:hover {
@@ -325,6 +345,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .btn-secondary .btn-icon { background: var(--cream); }
@@ -475,8 +496,58 @@
     margin: 0;
   }
 
+  /* ---------- Why NoshMaté (features) ---------- */
+  .features { padding: 100px 0; background: #fff; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 26px;
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s cubic-bezier(.2,.9,.3,1.1), box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    background: #fff;
+  }
+
+  .feature-ico {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-ico svg { width: 22px; height: 22px; }
+
+  .feature-card h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+    letter-spacing: -0.2px;
+  }
+
+  .feature-card p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
   /* ---------- How it works ---------- */
-  .how { padding: 110px 0 100px; }
+  .how { padding: 100px 0; }
 
   .steps {
     display: grid;
@@ -522,7 +593,7 @@
   }
 
   .step-card:nth-child(2) .step-icon { background: var(--grad-orange); box-shadow: 0 10px 20px rgba(242, 130, 12, 0.3); }
-  .step-card:nth-child(3) .step-icon { background: linear-gradient(135deg, #0EA5A5, #34C77B); box-shadow: 0 10px 20px rgba(14, 165, 165, 0.25); }
+  .step-card:nth-child(3) .step-icon { background: var(--grad-teal); box-shadow: 0 10px 20px rgba(14, 165, 165, 0.25); }
 
   .step-icon svg { width: 24px; height: 24px; }
 
@@ -539,8 +610,88 @@
     margin: 0;
   }
 
+  /* ---------- Lunch Plans ---------- */
+  .plans { padding: 100px 0; background: #fff; }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .plan-card {
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    padding: 30px 26px 26px;
+    background: var(--paper);
+    transition: transform 0.35s cubic-bezier(.2,.9,.3,1.1), box-shadow 0.35s ease, border-color 0.35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+
+  .plan-card.featured {
+    background: var(--grad-green);
+    color: #fff;
+  }
+
+  .plan-ico {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: var(--grad-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(242, 130, 12, 0.28);
+  }
+
+  .plan-card.featured .plan-ico {
+    background: rgba(255,255,255,0.16);
+    box-shadow: none;
+  }
+
+  .plan-ico svg { width: 23px; height: 23px; }
+
+  .plan-card h3 { font-size: 18px; margin: 0 0 8px; letter-spacing: -0.3px; }
+
+  .plan-card p.desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 18px;
+    flex-grow: 1;
+  }
+
+  .plan-card.featured p.desc { color: rgba(255,255,255,0.82); }
+
+  .plan-tag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(242,130,12,0.1);
+    color: var(--mate-orange);
+    margin-bottom: 14px;
+  }
+
+  .plan-card.featured .plan-tag {
+    background: rgba(255,255,255,0.16);
+    color: #fff;
+  }
+
   /* ---------- Menu ---------- */
-  .menu { padding: 100px 0; background: #fff; }
+  .menu { padding: 100px 0; }
 
   .menu-grid {
     display: grid;
@@ -551,7 +702,7 @@
   .menu-card {
     border-radius: 22px;
     overflow: hidden;
-    background: var(--paper);
+    background: #fff;
     border: 1px solid var(--line);
     transition: transform 0.35s cubic-bezier(.2,.9,.3,1.1), box-shadow 0.35s ease;
   }
@@ -628,8 +779,107 @@
     line-height: 1.6;
   }
 
+  /* ---------- Quality ---------- */
+  .quality { padding: 100px 0; background: #fff; }
+
+  .quality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+  }
+
+  .quality-card {
+    text-align: center;
+    padding: 40px 26px;
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .quality-ico {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--grad-green);
+    box-shadow: 0 12px 24px rgba(15, 62, 34, 0.25);
+  }
+
+  .quality-card:nth-child(2) .quality-ico { background: var(--grad-orange); box-shadow: 0 12px 24px rgba(242, 130, 12, 0.28); }
+  .quality-card:nth-child(3) .quality-ico { background: var(--grad-teal); box-shadow: 0 12px 24px rgba(14, 165, 165, 0.25); }
+
+  .quality-ico svg { width: 26px; height: 26px; }
+
+  .quality-card h3 { font-size: 17px; margin: 0 0 10px; letter-spacing: -0.2px; }
+  .quality-card p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+
+  /* ---------- Story / Mission / Vision ---------- */
+  .story { padding: 100px 0; }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .story-text .eyebrow { margin-bottom: 14px; }
+
+  .story-text h2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+    margin: 0 0 20px;
+    font-weight: 800;
+  }
+
+  .story-text p {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+
+  .story-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .story-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .story-card .story-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--nosh-green);
+    margin-bottom: 12px;
+  }
+
+  .story-card:nth-child(2) .story-label { color: var(--mate-orange); }
+
+  .story-card p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0;
+    font-weight: 600;
+  }
+
   /* ---------- Areas ---------- */
-  .areas { padding: 90px 0; }
+  .areas { padding: 90px 0; background: #fff; }
 
   .area-pills {
     display: flex;
@@ -639,7 +889,7 @@
   }
 
   .area-pill {
-    background: #fff;
+    background: var(--paper);
     border: 1.5px solid var(--line);
     padding: 11px 22px;
     border-radius: 999px;
@@ -733,10 +983,81 @@
     justify-content: center;
     font-weight: 800;
     font-size: 14px;
+    flex-shrink: 0;
   }
 
   .t-name { font-weight: 700; font-size: 13.5px; }
   .t-role { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+  /* ---------- FAQ ---------- */
+  .faq { padding: 100px 0; background: #fff; }
+
+  .faq-list {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-plus {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .faq-plus::before,
+  .faq-plus::after {
+    content: "";
+    position: absolute;
+    background: var(--nosh-green);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-plus::before { width: 10px; height: 1.6px; }
+  .faq-plus::after { width: 1.6px; height: 10px; }
+
+  .faq-item[open] .faq-plus { background: var(--grad-green); border-color: transparent; }
+  .faq-item[open] .faq-plus::before,
+  .faq-item[open] .faq-plus::after { background: #fff; }
+  .faq-item[open] .faq-plus::after { transform: scaleY(0); opacity: 0; }
+
+  .faq-answer {
+    padding: 0 24px 22px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
 
   /* ---------- CTA band ---------- */
   .cta-band {
@@ -803,8 +1124,8 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-    gap: 40px;
+    grid-template-columns: 1.3fr 0.9fr 1fr 0.9fr 1fr;
+    gap: 32px;
     padding-bottom: 44px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
@@ -884,6 +1205,8 @@
     .hero-buttons { justify-content: center; }
     .stats { justify-content: center; }
     .hero-visual { max-width: 420px; margin: 0 auto; }
+    .story-grid { grid-template-columns: 1fr; }
+    .story-text { text-align: left; }
   }
 
   @media (max-width: 860px) {
@@ -950,6 +1273,7 @@
     .footer-grid { grid-template-columns: 1fr; gap: 34px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .cta-band { margin: 70px 20px; padding: 56px 26px; border-radius: 24px; }
+    .feature-card { flex-direction: column; }
   }
 
   @media (max-width: 420px) {
@@ -975,11 +1299,12 @@
         </p>
 
         <ul class="nav-links" id="navLinks">
+          <li><a href="#why" class="nav-link">Why Us</a></li>
           <li><a href="#how" class="nav-link">How It Works</a></li>
+          <li><a href="#plans" class="nav-link">Lunch Plans</a></li>
           <li><a href="#menu" class="nav-link">Menu</a></li>
           <li><a href="#areas" class="nav-link">Coverage</a></li>
-          <li><a href="#testimonials" class="nav-link">Reviews</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
           <li><a href="#contact" class="btn-primary nav-cta-mobile">Order Now</a></li>
         </ul>
 
@@ -1010,9 +1335,9 @@
             <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18l-2 12H5L3 6Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M8 6V5a4 4 0 0 1 8 0v1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
             Order Lunch Today
           </a>
-          <a href="#menu" class="btn-secondary">
+          <a href="#plans" class="btn-secondary">
             <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h10" stroke="#14532D" stroke-width="2" stroke-linecap="round"/></svg></span>
-            View Menu
+            See Lunch Plans
           </a>
         </div>
 
@@ -1078,6 +1403,79 @@
     </div>
   </section>
 
+  <!-- Why NoshMaté -->
+  <section class="features" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2>Built For Busy Office Days</h2>
+        <p>Everything about NoshMaté is designed around one goal — hot, reliable lunch that respects your schedule.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card reveal d1">
+          <span class="feature-ico" style="background:var(--grad-orange)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c1 3-1 4-1 6 0 1.5 1 2.5 2.5 2.5S16 9.5 16 8c2 2 3 4.5 3 7a7 7 0 1 1-14 0c0-3.5 2-5.5 3-8 .5 1.5 1.5 2 2.5 1.5C11.5 8 10 5 12 2Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <h3>Freshly Cooked Daily</h3>
+            <p>Every tray is cooked same-day in our kitchen — no freezers, no reheated batches.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal d2">
+          <span class="feature-ico" style="background:var(--grad-green)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 21h16M6 21V10a6 6 0 0 1 12 0v11" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M6 14h12" stroke="#fff" stroke-width="2"/></svg>
+          </span>
+          <div>
+            <h3>Homestyle Flavor</h3>
+            <p>Recipes rooted in real Lahori home cooking, not catering-style mass food.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal d3">
+          <span class="feature-ico" style="background:var(--grad-teal)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <h3>Trusted Sourcing</h3>
+            <p>Ingredients are checked and selected daily before they ever reach the kitchen.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal d4">
+          <span class="feature-ico" style="background:var(--grad-orange)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <h3>On-Time Delivery</h3>
+            <p>Lunch lands at your desk on schedule, every single working day.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal d5">
+          <span class="feature-ico" style="background:var(--grad-green)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M5 7l-3 6a3 3 0 0 0 6 0l-3-6Zm14 0-3 6a3 3 0 0 0 6 0l-3-6ZM5 7h14M3 21h18" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <h3>Balanced Portions</h3>
+            <p>Thoughtfully portioned meals that keep you full and focused all afternoon.</p>
+          </div>
+        </div>
+
+        <div class="feature-card reveal d6">
+          <span class="feature-ico" style="background:var(--grad-teal)">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.8"/></svg>
+          </span>
+          <div>
+            <h3>Easy Ordering</h3>
+            <p>Order on WhatsApp or online in under a minute — no apps to install.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- How it works -->
   <section class="how" id="how">
     <div class="container">
@@ -1111,6 +1509,55 @@
           </div>
           <h3>Delivered to Your Desk</h3>
           <p>Hot lunch arrives at your office right on time for your break.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lunch Plans -->
+  <section class="plans" id="plans">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Lunch Plans</span>
+        <h2>A Plan For Every Team</h2>
+        <p>Whether it's a single desk or a full floor, pick the lunch plan that fits how your office eats.</p>
+      </div>
+
+      <div class="plan-grid">
+        <div class="plan-card reveal d1">
+          <div class="plan-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 8 12 3 3 8l9 5 9-5Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 8v8l9 5 9-5V8M12 13v8" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="plan-tag">Single Order</span>
+          <h3>Everyday Lunch Box</h3>
+          <p class="desc">A single-serve balanced combo, ordered day by day — perfect for individual desk delivery.</p>
+        </div>
+
+        <div class="plan-card featured reveal d2">
+          <div class="plan-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plan-tag">Most Popular</span>
+          <h3>Weekly Lunch Plan</h3>
+          <p class="desc">Subscribe for the week and get a rotating menu delivered automatically, Monday to Saturday.</p>
+        </div>
+
+        <div class="plan-card reveal d3">
+          <div class="plan-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 21V7l8-4 8 4v14" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 21v-6h6v6M9 11h.01M15 11h.01M9 7h.01M15 7h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plan-tag">For Teams</span>
+          <h3>Office Lunch Delivery</h3>
+          <p class="desc">Bulk ordering for entire teams and floors, coordinated through one office contact.</p>
+        </div>
+
+        <div class="plan-card reveal d4">
+          <div class="plan-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="9" r="2.4" stroke="#fff" stroke-width="1.8"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c2.6.3 4.6 2.5 4.6 5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="plan-tag">Events</span>
+          <h3>Meeting &amp; Event Spread</h3>
+          <p class="desc">Catered lunch spreads for client meetings, workshops and office events, sized to your headcount.</p>
         </div>
       </div>
     </div>
@@ -1184,6 +1631,66 @@
       </div>
 
       <p class="menu-note reveal">Menu changes daily — message us on WhatsApp each morning to see today's full lineup and choose your meal.</p>
+    </div>
+  </section>
+
+  <!-- Quality -->
+  <section class="quality" id="quality">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Standards</span>
+        <h2>Quality You Can Taste</h2>
+        <p>Three checks every meal passes before it ever leaves our kitchen.</p>
+      </div>
+
+      <div class="quality-grid">
+        <div class="quality-card reveal d1">
+          <div class="quality-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c1 3-1 4-1 6 0 1.5 1 2.5 2.5 2.5S16 9.5 16 8c2 2 3 4.5 3 7a7 7 0 1 1-14 0c0-3.5 2-5.5 3-8 .5 1.5 1.5 2 2.5 1.5C11.5 9 10 6 12 3Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Fresh Sourcing</h3>
+          <p>Ingredients are sourced and checked every morning before cooking begins.</p>
+        </div>
+
+        <div class="quality-card reveal d2">
+          <div class="quality-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Clean Kitchen</h3>
+          <p>Strict hygiene standards are followed at every step of preparation.</p>
+        </div>
+
+        <div class="quality-card reveal d3">
+          <div class="quality-ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Checked Before Dispatch</h3>
+          <p>Every tray is inspected for quality and portioning right before it leaves for delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="story" id="story">
+    <div class="container story-grid">
+      <div class="story-text reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2>Why We Started NoshMaté</h2>
+        <p>NoshMaté began with a simple frustration — office lunch in Lahore usually meant long queues, cold food, or the same three restaurants on rotation. So we built a kitchen that cooks fresh every morning and a delivery routine tight enough to hit desks before the lunch break ends.</p>
+        <p>What started with a handful of offices in Gulberg now feeds teams across DHA, Johar Town, Model Town and beyond — one hot tray at a time.</p>
+      </div>
+
+      <div class="story-cards reveal d2">
+        <div class="story-card">
+          <span class="story-label">Our Mission</span>
+          <p>Make dependable, home-style lunch accessible to every office in Lahore — without the wait, the guesswork, or the markup.</p>
+        </div>
+        <div class="story-card">
+          <span class="story-label">Our Vision</span>
+          <p>To be the lunch order every office in Lahore reaches for by default.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1261,6 +1768,40 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before you place your first order.</p>
+      </div>
+
+      <div class="faq-list reveal d1">
+        <details class="faq-item" open>
+          <summary>What is NoshMaté?<span class="faq-plus"></span></summary>
+          <div class="faq-answer">NoshMaté is a daily lunch delivery service for offices in Lahore. We cook fresh every day and deliver hot meals straight to your desk.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you deliver every working day?<span class="faq-plus"></span></summary>
+          <div class="faq-answer">Yes — we deliver Monday to Saturday across all the areas listed in our coverage section above.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I set up a recurring weekly plan?<span class="faq-plus"></span></summary>
+          <div class="faq-answer">Yes. Message us on WhatsApp to set up a Weekly Lunch Plan for yourself or your whole team, billed once a week.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are ingredients checked daily?<span class="faq-plus"></span></summary>
+          <div class="faq-answer">Every batch of ingredients is checked before it enters the kitchen, and every tray is checked again before it leaves for delivery.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I place an order?<span class="faq-plus"></span></summary>
+          <div class="faq-answer">Message us on WhatsApp before 11 AM with your order, or place it through our website — we'll confirm and get cooking.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-band reveal" id="contact">
     <h2>Hungry? Let's get lunch to your office.</h2>
@@ -1292,10 +1833,20 @@
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#why">Why Us</a></li>
             <li><a href="#how">How It Works</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#areas">Coverage Areas</a></li>
             <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Lunch Plans</h4>
+          <ul>
+            <li><a href="#plans">Everyday Lunch Box</a></li>
+            <li><a href="#plans">Weekly Lunch Plan</a></li>
+            <li><a href="#plans">Office Lunch Delivery</a></li>
+            <li><a href="#plans">Meeting &amp; Event Spread</a></li>
           </ul>
         </div>
 
@@ -1304,6 +1855,7 @@
           <ul>
             <li><span class="info">+92 300 1234567</span></li>
             <li><span class="info">Mon–Sat, 9 AM – 6 PM</span></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Order Support</a></li>
           </ul>
         </div>
@@ -1375,6 +1927,15 @@
       });
     }, { threshold: 0.4 });
     counters.forEach(el => counterIO.observe(el));
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          faqItems.forEach(other => { if (other !== item) other.open = false; });
+        }
+      });
+    });
   </script>
 
 </body>
