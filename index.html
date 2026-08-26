@@ -75,9 +75,10 @@
   "servesCuisine": ["Pakistani", "Chinese"],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Gulberg III",
+    "streetAddress": "37 Block C, Main Road, Faisal Town",
     "addressLocality": "Lahore",
     "addressRegion": "Punjab",
+    "postalCode": "54700",
     "addressCountry": "PK"
   },
   "geo": {
@@ -1357,14 +1358,31 @@
       color: rgba(255, 255, 255, 0.72);
     }
 
-    .t-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    /* ---------- Reviews slider ---------- */
+    .t-slider {
       position: relative;
     }
 
+    .t-viewport {
+      overflow: hidden;
+      /* Breathing room so the card hover-lift and focus ring aren't clipped. */
+      padding: 8px 4px 12px;
+      margin: -8px -4px -12px;
+    }
+
+    .t-track {
+      display: flex;
+      align-items: stretch;
+      gap: 24px;
+      transition: transform 0.6s cubic-bezier(.16, .8, .28, 1);
+      will-change: transform;
+    }
+
     .t-card {
+      /* Three per view; the two gaps (24px each) come out of the width. */
+      flex: 0 0 calc((100% - 48px) / 3);
+      display: flex;
+      flex-direction: column;
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 22px;
@@ -1376,6 +1394,98 @@
     .t-card:hover {
       transform: translateY(-8px);
       background: rgba(255, 255, 255, 0.11);
+    }
+
+    @media (max-width: 980px) {
+      .t-card {
+        flex-basis: calc((100% - 24px) / 2);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .t-card {
+        flex-basis: 100%;
+      }
+    }
+
+    .t-topic {
+      align-self: flex-start;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--mate-orange-light);
+      margin-bottom: 16px;
+    }
+
+    .t-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .t-arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .t-arrow svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .t-arrow:hover {
+      background: var(--mate-orange);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .t-dots {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .t-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .t-dot.active {
+      width: 26px;
+      background: var(--mate-orange);
+    }
+
+    .t-slider :focus-visible {
+      outline: 2px solid var(--mate-orange-light);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .t-track {
+        transition: none;
+      }
     }
 
     .t-quote-mark {
@@ -2731,46 +2841,109 @@
         <p>A few words from the offices we serve every day.</p>
       </div>
 
-      <div class="t-grid">
-        <div class="t-card reveal d1">
-          <div class="t-quote-mark">"</div>
-          <div class="t-stars">★★★★★</div>
-          <p class="quote">NoshMaté has been a game changer for our office lunches. Always on time and genuinely tasty.
-          </p>
-          <div class="t-person">
-            <div class="t-avatar">A</div>
-            <div>
-              <div class="t-name">Ayesha Khan</div>
-              <div class="t-role">HR Manager, Gulberg</div>
+      <div class="t-slider reveal d1" id="reviewSlider">
+        <div class="t-viewport">
+          <div class="t-track" id="reviewTrack">
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Taste</span>
+            <div class="t-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="quote">The Monday chicken karahi genuinely tastes like it came out of a home kitchen, not a catering tray. Because the menu rotates, nobody on my team is bored of it by Thursday either.</p>
+            <div class="t-person">
+              <div class="t-avatar">A</div>
+              <div>
+                <div class="t-name">Ayesha Khan</div>
+                <div class="t-role">HR Manager &middot; software house, Gulberg</div>
+              </div>
             </div>
+          </article>
+
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Food Quality</span>
+            <div class="t-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="quote">Food still arrives hot on the fourth floor — salad crisp, roti soft, rice not clumped. That consistency is the part I did not expect from a daily lunch service.</p>
+            <div class="t-person">
+              <div class="t-avatar">B</div>
+              <div>
+                <div class="t-name">Bilal Ahmed</div>
+                <div class="t-role">Team Lead &middot; IT firm, Arfa Software Park</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Value</span>
+            <div class="t-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="quote">Per head it works out cheaper than the daily takeaway runs our team used to do, and the weekly plan means one invoice instead of me chasing twenty receipts at month end.</p>
+            <div class="t-person">
+              <div class="t-avatar">S</div>
+              <div>
+                <div class="t-name">Sana Malik</div>
+                <div class="t-role">Office Administrator &middot; DHA Phase 5</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Service</span>
+            <div class="t-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="quote">One WhatsApp message and 22 lunches turn up on time. I once changed the headcount at 10:40 AM and they still delivered the full order at 1 PM without a fuss.</p>
+            <div class="t-person">
+              <div class="t-avatar">H</div>
+              <div>
+                <div class="t-name">Hamza Sheikh</div>
+                <div class="t-role">Operations Manager &middot; logistics office, Johar Town</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Recommendation</span>
+            <div class="t-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="quote">We switched from a tiffin service that kept slipping on timing and never looked back. I have already recommended NoshMat&eacute; to two other offices in our building.</p>
+            <div class="t-person">
+              <div class="t-avatar">N</div>
+              <div>
+                <div class="t-name">Nadia Rauf</div>
+                <div class="t-role">Admin Head &middot; consultancy, Model Town</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="t-quote-mark">&ldquo;</div>
+            <span class="t-topic">Events</span>
+            <div class="t-stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div>
+            <p class="quote">Their event spread handled a 40-person client workshop without a hitch and the feedback was excellent. Only thing I would like is a couple more vegetarian mains in the weekly rotation.</p>
+            <div class="t-person">
+              <div class="t-avatar">F</div>
+              <div>
+                <div class="t-name">Faisal Iqbal</div>
+                <div class="t-role">Founder &middot; creative agency, MM Alam Road</div>
+              </div>
+            </div>
+          </article>
           </div>
         </div>
 
-        <div class="t-card reveal d2">
-          <div class="t-quote-mark">"</div>
-          <div class="t-stars">★★★★★</div>
-          <p class="quote">Affordable, fresh, and the daily menu keeps things interesting. Our whole floor orders now.
-          </p>
-          <div class="t-person">
-            <div class="t-avatar">B</div>
-            <div>
-              <div class="t-name">Bilal Ahmed</div>
-              <div class="t-role">Team Lead, Arfa Software Park</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card reveal d3">
-          <div class="t-quote-mark">"</div>
-          <div class="t-stars">★★★★★</div>
-          <p class="quote">Ordering on WhatsApp is so easy and delivery is always within the promised time.</p>
-          <div class="t-person">
-            <div class="t-avatar">S</div>
-            <div>
-              <div class="t-name">Sana Malik</div>
-              <div class="t-role">Office Admin, DHA Phase 5</div>
-            </div>
-          </div>
+        <div class="t-controls">
+          <button class="t-arrow" id="reviewPrev" type="button" aria-label="Previous reviews">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="t-dots" id="reviewDots" role="group" aria-label="Review pages"></div>
+          <button class="t-arrow" id="reviewNext" type="button" aria-label="Next reviews">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -2923,7 +3096,7 @@
           <ul>
             <li><a href="mailto:info@noshmate.pk">info@noshmate.pk</a></li>
             <li><a href="https://noshmate.pk" target="_blank" rel="noopener">noshmate.pk</a></li>
-            <li><span class="info">Gulberg III, Lahore, Pakistan</span></li>
+            <li><span class="info">37 Block C, Main Road, Faisal Town, Lahore, Pakistan. 54700.</span></li>
           </ul>
         </div>
       </div>
@@ -2972,6 +3145,100 @@
         });
       });
     });
+
+    // ---------- Reviews slider ----------
+    const reviewSlider = document.getElementById('reviewSlider');
+    if (reviewSlider) {
+      const track = document.getElementById('reviewTrack');
+      const dotsWrap = document.getElementById('reviewDots');
+      const cards = Array.from(track.children);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const AUTOPLAY_MS = 5000;
+      let page = 0;
+      let perView = 1;
+      let pages = 1;
+      let timer = null;
+
+      // How many cards fit is decided by CSS flex-basis, so measure rather than
+      // duplicate the breakpoints here.
+      function measure() {
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        perView = Math.max(1, Math.round((track.getBoundingClientRect().width + gap) / (cardWidth + gap)));
+        pages = Math.max(1, Math.ceil(cards.length / perView));
+        return { cardWidth, gap };
+      }
+
+      function render() {
+        const { cardWidth, gap } = measure();
+        page = Math.min(page, pages - 1);
+        // Clamp the last page so it lands flush with the final card instead of
+        // leaving a gap when the cards don't divide evenly.
+        const firstCard = Math.min(page * perView, Math.max(0, cards.length - perView));
+        track.style.transform = 'translateX(-' + (firstCard * (cardWidth + gap)) + 'px)';
+        cards.forEach((card, i) => {
+          const visible = i >= firstCard && i < firstCard + perView;
+          card.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        });
+        if (dotsWrap.children.length !== pages) {
+          dotsWrap.innerHTML = '';
+          for (let i = 0; i < pages; i++) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 't-dot';
+            dot.setAttribute('aria-label', 'Go to review page ' + (i + 1));
+            dot.addEventListener('click', () => { goTo(i); restart(); });
+            dotsWrap.appendChild(dot);
+          }
+        }
+        Array.from(dotsWrap.children).forEach((dot, i) => {
+          dot.classList.toggle('active', i === page);
+          dot.setAttribute('aria-current', i === page ? 'true' : 'false');
+        });
+      }
+
+      function goTo(next) {
+        page = (next + pages) % pages;
+        render();
+      }
+
+      function start() {
+        if (reduceMotion.matches || pages < 2) return;
+        stop();
+        timer = setInterval(() => goTo(page + 1), AUTOPLAY_MS);
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      function restart() { stop(); start(); }
+
+      document.getElementById('reviewPrev').addEventListener('click', () => { goTo(page - 1); restart(); });
+      document.getElementById('reviewNext').addEventListener('click', () => { goTo(page + 1); restart(); });
+
+      // Don't slide out from under someone reading, hovering or tabbing through.
+      reviewSlider.addEventListener('mouseenter', stop);
+      reviewSlider.addEventListener('mouseleave', start);
+      reviewSlider.addEventListener('focusin', stop);
+      reviewSlider.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+      reduceMotion.addEventListener('change', () => reduceMotion.matches ? stop() : start());
+
+      let touchX = null;
+      track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+      track.addEventListener('touchend', e => {
+        if (touchX === null) return;
+        const delta = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(delta) > 45) goTo(delta < 0 ? page + 1 : page - 1);
+        touchX = null;
+        start();
+      });
+
+      window.addEventListener('resize', render);
+      render();
+      start();
+    }
 
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
