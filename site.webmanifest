@@ -1,0 +1,24 @@
+{
+  "name": "NoshMaté",
+  "short_name": "NoshMaté",
+  "description": "Daily office lunch delivery in Lahore — hot, home-style meals delivered to your desk.",
+  "icons": [
+    {
+      "src": "/assets/favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#14532D",
+  "background_color": "#FFF8EF",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
