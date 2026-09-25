@@ -1855,14 +1855,13 @@
         top: 0;
         right: 0;
         height: 100vh;
-        width: 78%;
-        max-width: 320px;
+        width: 100%;
         background: #fff;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 100px 30px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 100px 30px 60px;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
         transform: translateX(100%);
         transition: transform 0.35s ease;
@@ -1875,9 +1874,11 @@
       }
 
       .nav-links a.nav-link {
-        font-size: 17px;
+        font-size: 21px;
         width: 100%;
-        padding: 12px 4px;
+        max-width: 320px;
+        text-align: center;
+        padding: 14px 4px;
       }
 
       .nav-cta {
@@ -1889,6 +1890,7 @@
         margin-top: 14px;
         justify-content: center;
         width: 100%;
+        max-width: 320px;
       }
 
       .overlay {
