@@ -970,8 +970,8 @@ blockquote.quote-card cite {
   }
 
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 34px;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 20px;
   }
 
   .footer-bottom {
