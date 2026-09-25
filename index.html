@@ -63,15 +63,19 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CateringBusiness",
+  "@type": ["CateringBusiness", "FoodEstablishment"],
   "@id": "https://noshmate.pk/#business",
   "name": "NoshMaté",
   "alternateName": "NoshMate",
   "description": "Daily office lunch delivery service in Lahore, serving hot, home-style Pakistani and Chinese-style dishes with weekly rotating menus.",
   "url": "https://noshmate.pk/",
-  "telephone": "+92-300-1234567",
+  "telephone": "+92-330-9993307",
   "email": "info@noshmate.pk",
   "image": "https://images.pexels.com/photos/29685076/pexels-photo-29685076.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "sameAs": [
+    "https://www.facebook.com/noshmate.pk",
+    "https://www.instagram.com/noshmate.pk"
+  ],
   "servesCuisine": ["Pakistani", "Chinese"],
   "address": {
     "@type": "PostalAddress",
@@ -111,6 +115,11 @@
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Office Lunch Delivery", "description": "Bulk ordering for entire teams and floors, coordinated through one office contact." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meeting & Event Spread", "description": "Catered lunch spreads for client meetings, workshops and office events, sized to your headcount." } }
     ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "6"
   }
 }
 </script>
@@ -145,6 +154,16 @@
       "@type": "Question",
       "name": "How do I place an order?",
       "acceptedAnswer": { "@type": "Answer", "text": "Message us on WhatsApp before 11 AM with your order, or place it through our website — we'll confirm and get cooking." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does billing work for corporate/office orders?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Corporate accounts get one consolidated invoice — weekly or monthly — covering every desk ordered under that office, instead of per-person payments. Message us on WhatsApp to set up a corporate account." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I order lunch on WhatsApp?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Message our WhatsApp number before the 11 AM cutoff with your office name, delivery address and order (or plan). We confirm within minutes and deliver hot, on time." }
     }
   ]
 }
@@ -3052,7 +3071,7 @@
                 <circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.8" />
                 <circle cx="17.5" cy="6.5" r="1.2" fill="#fff" />
               </svg></a>
-            <a href="https://wa.me/noshmate.pk" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="https://wa.me/923309993307" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.8" />
                 <path
                   d="M8.5 8.8c.2-.5.5-.5.8-.5h.6c.2 0 .4 0 .6.5.2.5.7 1.6.7 1.7.1.1.1.3 0 .4-.1.2-.2.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3 0 .2 0 .9-.4 1.3-.4.5-1.3.9-2 .9-.6 0-1.5-.2-3.3-1.2-2.6-1.5-4.1-4-4.3-4.2-.1-.2-1-1.3-1-2.6 0-1.2.6-1.8.9-2.1Z"
