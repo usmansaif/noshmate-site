@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.noshmate.pk/sitemap.xml
+Sitemap: https://noshmate.pk/sitemap.xml

@@ -112,8 +112,8 @@
     "itemListElement": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Everyday Lunch Box", "description": "A single-serve balanced combo, ordered day by day — perfect for individual desk delivery." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weekly Lunch Plan", "description": "Subscribe for the week and get a rotating menu delivered automatically, Monday to Saturday." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Office Lunch Delivery", "description": "Bulk ordering for entire teams and floors, coordinated through one office contact." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meeting & Event Spread", "description": "Catered lunch spreads for client meetings, workshops and office events, sized to your headcount." } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Office Lunch Delivery", "description": "Individually packed lunches delivered to every desk on your floor, coordinated through one office contact." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meeting & Event Lunches", "description": "Individually boxed lunches for client meetings, workshops and office events, one box per attendee." } }
     ]
   },
   "aggregateRating": {
@@ -1805,6 +1805,33 @@
       gap: 10px;
     }
 
+    /* ---------- Floating WhatsApp button ---------- */
+    .wa-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--grad-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 14px 30px rgba(15, 62, 34, 0.4);
+      z-index: 1090;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .wa-float:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 18px 36px rgba(15, 62, 34, 0.48);
+    }
+
+    .wa-float svg {
+      width: 27px;
+      height: 27px;
+    }
+
     /* ---------- Mobile ---------- */
     @media (max-width: 980px) {
       .hero-inner {
@@ -2271,7 +2298,7 @@
             </svg>
           </div>
           <span class="plan-tag">Most Popular</span>
-          <h3>Weekly Lunch Plan</h3>
+          <h3><a href="/subscription/">Weekly Lunch Plan</a></h3>
           <p class="desc">Subscribe for the week and get a rotating menu delivered automatically, Monday to Saturday.
           </p>
         </div>
@@ -2285,8 +2312,8 @@
             </svg>
           </div>
           <span class="plan-tag">For Teams</span>
-          <h3>Office Lunch Delivery</h3>
-          <p class="desc">Bulk ordering for entire teams and floors, coordinated through one office contact.</p>
+          <h3><a href="/corporate-catering/">Office Lunch Delivery</a></h3>
+          <p class="desc">Individually packed lunches delivered to every desk on your floor, coordinated through one office contact.</p>
         </div>
 
         <div class="plan-card reveal d4">
@@ -2299,11 +2326,15 @@
             </svg>
           </div>
           <span class="plan-tag">Events</span>
-          <h3>Meeting &amp; Event Spread</h3>
-          <p class="desc">Catered lunch spreads for client meetings, workshops and office events, sized to your
-            headcount.</p>
+          <h3><a href="/corporate-catering/">Meeting &amp; Event Lunches</a></h3>
+          <p class="desc">Individually boxed lunches for client meetings, workshops and office events, one box per
+            attendee.</p>
         </div>
       </div>
+
+      <p style="text-align:center; margin-top:28px; font-size:14.5px; color:var(--ink-soft);">
+        For teams of 10+? <a href="/corporate-catering/" style="color:var(--nosh-green); font-weight:700;">See corporate catering &rarr;</a>
+      </p>
     </div>
   </section>
 
@@ -2841,14 +2872,14 @@
       </div>
 
       <div class="area-pills reveal d1">
-        <span class="area-pill">DHA Phase 1–6</span>
-        <span class="area-pill">Gulberg</span>
-        <span class="area-pill">Johar Town</span>
-        <span class="area-pill">Model Town</span>
+        <a class="area-pill" href="/delivery/dha/">DHA Phase 1–6</a>
+        <a class="area-pill" href="/delivery/gulberg/">Gulberg</a>
+        <a class="area-pill" href="/delivery/johar-town/">Johar Town</a>
+        <a class="area-pill" href="/delivery/model-town/">Model Town</a>
         <span class="area-pill">Liberty Market</span>
-        <span class="area-pill">MM Alam Road</span>
-        <span class="area-pill">Arfa Software Park</span>
-        <span class="area-pill">Bahria Town</span>
+        <a class="area-pill" href="/delivery/gulberg/">MM Alam Road</a>
+        <a class="area-pill" href="/delivery/arfa-software-park/">Arfa Software Park</a>
+        <a class="area-pill" href="/delivery/bahria-town/">Bahria Town</a>
       </div>
     </div>
   </section>
@@ -3096,9 +3127,9 @@
           <h4>Lunch Plans</h4>
           <ul>
             <li><a href="#plans">Everyday Lunch Box</a></li>
-            <li><a href="#plans">Weekly Lunch Plan</a></li>
-            <li><a href="#plans">Office Lunch Delivery</a></li>
-            <li><a href="#plans">Meeting &amp; Event Spread</a></li>
+            <li><a href="/subscription/">Weekly Lunch Plan</a></li>
+            <li><a href="/corporate-catering/">Corporate Catering</a></li>
+            <li><a href="/healthy-lunches/">Healthy Lunches</a></li>
           </ul>
         </div>
 
@@ -3128,6 +3159,15 @@
       </div>
     </div>
   </footer>
+
+  <a href="https://wa.me/923309993307" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.8" />
+      <path
+        d="M8.5 8.8c.2-.5.5-.5.8-.5h.6c.2 0 .4 0 .6.5.2.5.7 1.6.7 1.7.1.1.1.3 0 .4-.1.2-.2.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.8 1.9.9.3.1.5.2.5.3 0 .2 0 .9-.4 1.3-.4.5-1.3.9-2 .9-.6 0-1.5-.2-3.3-1.2-2.6-1.5-4.1-4-4.3-4.2-.1-.2-1-1.3-1-2.6 0-1.2.6-1.8.9-2.1Z"
+        fill="#fff" />
+    </svg>
+  </a>
 
   <script>
     const siteHeader = document.querySelector('header');
