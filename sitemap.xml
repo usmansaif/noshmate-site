@@ -51,6 +51,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://noshmate.pk/delivery/liberty-market/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://noshmate.pk/delivery/mm-alam-road/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://noshmate.pk/faq/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
