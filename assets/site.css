@@ -1,7 +1,7 @@
 /* Shared header/footer/base styles for noshmate.pk sub-pages.
    Copied from index.html's inline <style> so every page renders the same
    nav, drawer and footer. index.html keeps its own inline copy (it also
-   needs hero/menu/testimonial styles this file doesn't carry) — if you
+   needs hero/menu/testimonial styles this file doesn't carry), if you
    change nav, buttons, FAQ, CTA band or footer here, mirror the change in
    index.html too. */
 
@@ -710,6 +710,12 @@ footer {
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 28px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.info-card:hover {
+  box-shadow: 0 10px 26px rgba(18, 24, 26, 0.09);
+  transform: translateY(-2px);
 }
 
 .info-card h3 {

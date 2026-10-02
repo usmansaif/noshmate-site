@@ -1,4 +1,4 @@
-// Shared header/nav behavior for noshmate.pk sub-pages — copied from
+// Shared header/nav behavior for noshmate.pk sub-pages, copied from
 // index.html's inline <script> (same DOM ids: hamburger, navLinks, overlay).
 const siteHeader = document.querySelector('header');
 const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 12);
