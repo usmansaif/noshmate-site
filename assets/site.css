@@ -466,6 +466,7 @@ a.nav-cta-mobile {
 /* ---------- CTA band ---------- */
 .cta-band {
   margin: 100px auto;
+  width: calc(100% - 30px);
   max-width: 1100px;
   border-radius: 32px;
   background: var(--grad-orange);
@@ -988,6 +989,7 @@ blockquote.quote-card cite {
 
   .cta-band {
     margin: 70px 20px;
+    width: auto;
     padding: 56px 26px;
     border-radius: 24px;
   }
