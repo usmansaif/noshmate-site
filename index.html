@@ -1778,17 +1778,17 @@
       height: 10px;
     }
 
-    .faq-item[open] .faq-plus {
+    .faq-item[open]:not(.closing) .faq-plus {
       background: var(--grad-green);
       border-color: transparent;
     }
 
-    .faq-item[open] .faq-plus::before,
-    .faq-item[open] .faq-plus::after {
+    .faq-item[open]:not(.closing) .faq-plus::before,
+    .faq-item[open]:not(.closing) .faq-plus::after {
       background: #fff;
     }
 
-    .faq-item[open] .faq-plus::after {
+    .faq-item[open]:not(.closing) .faq-plus::after {
       transform: scaleY(0);
       opacity: 0;
     }
@@ -3068,9 +3068,20 @@
         <a class="area-pill" href="/delivery/gulberg/">Gulberg</a>
         <a class="area-pill" href="/delivery/johar-town/">Johar Town</a>
         <a class="area-pill" href="/delivery/model-town/">Model Town</a>
+        <a class="area-pill" href="/delivery/arfa-software-park/">Arfa Software Park</a>
+        <a class="area-pill" href="/delivery/faisal-town/">Faisal Town</a>
+        <a class="area-pill" href="/delivery/township/">Township</a>
+        <a class="area-pill" href="/delivery/khayaban-e-jinnah/">Khayaban-e-Jinnah</a>
+        <a class="area-pill" href="/delivery/pcsir-phase-1/">PCSIR Phase 1</a>
+        <a class="area-pill" href="/delivery/pcsir-phase-2/">PCSIR Phase 2</a>
+        <a class="area-pill" href="/delivery/wapda-town/">Wapda Town</a>
+        <a class="area-pill" href="/delivery/pia-society/">PIA Society</a>
+        <a class="area-pill" href="/delivery/abdalian-housing-scheme/">Abdalian Housing Scheme</a>
+        <a class="area-pill" href="/delivery/university-of-education-township/">University of Education (Township Campus)</a>
+        <a class="area-pill" href="/delivery/umt-johar-town/">UMT (University of Management and Technology)</a>
+        <a class="area-pill" href="/delivery/ucp-johar-town/">UCP (University of Central Punjab)</a>
         <a class="area-pill" href="/delivery/liberty-market/">Liberty Market</a>
         <a class="area-pill" href="/delivery/mm-alam-road/">MM Alam Road</a>
-        <a class="area-pill" href="/delivery/arfa-software-park/">Arfa Software Park</a>
         <a class="area-pill" href="/delivery/bahria-town/">Bahria Town</a>
       </div>
     </div>
@@ -3544,17 +3555,9 @@
       });
     }, { threshold: 0.4 });
     counters.forEach(el => counterIO.observe(el));
-
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      item.addEventListener('toggle', () => {
-        if (item.open) {
-          faqItems.forEach(other => { if (other !== item) other.open = false; });
-        }
-      });
-    });
   </script>
 
+  <script src="/assets/faq.js" defer></script>
 </body>
 
 </html>
