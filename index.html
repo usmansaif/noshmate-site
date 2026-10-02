@@ -69,67 +69,207 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- Structured Data: Local Business -->
+  <!-- Structured Data: Local Business + Corporate Meal Delivery -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FoodEstablishment",
-  "@id": "https://noshmate.pk/#business",
-  "name": "NoshMaté",
-  "alternateName": "NoshMate",
-  "description": "Daily office lunch delivery service and tiffin service in Lahore, serving hot, home-style Pakistani and Chinese-style dishes with weekly rotating menus.",
-  "url": "https://noshmate.pk/",
-  "telephone": "+92-330-9993307",
-  "email": "info@noshmate.pk",
-  "image": "https://images.pexels.com/photos/29685076/pexels-photo-29685076.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  "sameAs": [
-    "https://www.facebook.com/noshmate.pk",
-    "https://www.instagram.com/noshmate.pk"
-  ],
-  "servesCuisine": ["Pakistani", "Chinese"],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "37 Block C, Main Road, Faisal Town",
-    "addressLocality": "Lahore",
-    "addressRegion": "Punjab",
-    "postalCode": "54700",
-    "addressCountry": "PK"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 31.5204,
-    "longitude": 74.3587
-  },
-  "areaServed": [
-    { "@type": "Place", "name": "DHA Lahore" },
-    { "@type": "Place", "name": "Gulberg, Lahore" },
-    { "@type": "Place", "name": "Johar Town, Lahore" },
-    { "@type": "Place", "name": "Model Town, Lahore" },
-    { "@type": "Place", "name": "Liberty Market, Lahore" },
-    { "@type": "Place", "name": "MM Alam Road, Lahore" },
-    { "@type": "Place", "name": "Arfa Software Park, Lahore" },
-    { "@type": "Place", "name": "Bahria Town, Lahore" }
-  ],
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Lunch Plans",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Everyday Lunch Box", "description": "A single-serve balanced combo, ordered day by day — perfect for individual desk delivery." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weekly Lunch Plan", "description": "Subscribe for the week and get a rotating menu delivered automatically, Monday to Saturday." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Office Lunch Delivery", "description": "Individually packed lunches delivered to every desk on your floor, coordinated through one office contact." } }
-    ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "6"
-  }
+  "@graph": [
+    {
+      "@type": [
+        "FoodEstablishment",
+        "LocalBusiness"
+      ],
+      "@id": "https://noshmate.pk/#business",
+      "name": "NoshMaté",
+      "alternateName": "NoshMate",
+      "url": "https://noshmate.pk/",
+      "description": "Daily office lunch delivery in Lahore: fresh, home-style Pakistani and Pakistani-style Chinese lunch boxes on weekly and monthly plans.",
+      "image": "https://images.pexels.com/photos/29685076/pexels-photo-29685076.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "telephone": "+92-330-9993307",
+      "email": "info@noshmate.pk",
+      "priceRange": "$$",
+      "servesCuisine": [
+        "Pakistani",
+        "Chinese"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "37 Block C, Main Road, Faisal Town",
+        "addressLocality": "Lahore",
+        "addressRegion": "Punjab",
+        "postalCode": "54700",
+        "addressCountry": "PK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.5204,
+        "longitude": 74.3587
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Model Town, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Arfa Software Park, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Johar Town, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Faisal Town, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Township, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Khayaban-e-Jinnah, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "PCSIR Phase 1, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "PCSIR Phase 2, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Wapda Town, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "PIA Society, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Abdalian Housing Scheme, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "University of Education (Township Campus), Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "University of Management and Technology (UMT), Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "University of Central Punjab (UCP), Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "DHA, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Gulberg, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Liberty Market, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "MM Alam Road, Lahore"
+        },
+        {
+          "@type": "Place",
+          "name": "Bahria Town, Lahore"
+        }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/noshmate.pk",
+        "https://www.instagram.com/noshmate.pk",
+        "https://www.tiktok.com/@noshmate.pk",
+        "https://www.linkedin.com/company/noshmate.pk"
+      ],
+      "hasOfferCatalog": {
+        "@id": "https://noshmate.pk/#lunch-plans"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "6"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://noshmate.pk/#corporate-meal-delivery",
+      "name": "Corporate Meal Delivery",
+      "serviceType": "Corporate Meal Delivery",
+      "category": "Corporate Meal Delivery",
+      "description": "Individually packed, home-style lunches delivered to offices across Lahore on weekly and monthly subscription plans, with one consolidated invoice for corporate accounts.",
+      "url": "https://noshmate.pk/",
+      "provider": {
+        "@id": "https://noshmate.pk/#business"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Lahore"
+      },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Offices and corporate teams"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://wa.me/923309993307",
+        "name": "Order on WhatsApp"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "@id": "https://noshmate.pk/#lunch-plans",
+        "name": "Lunch Plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Weekly Lunch Plan",
+              "serviceType": "Subscription meal plan",
+              "category": "Corporate Meal Delivery",
+              "url": "https://noshmate.pk/subscription/",
+              "description": "Subscribe for the week and get a rotating menu delivered automatically, Monday to Saturday. Weekly or monthly billing."
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://noshmate.pk/subscription/"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Office Lunch Delivery",
+              "serviceType": "Corporate lunch subscription",
+              "category": "Corporate Meal Delivery",
+              "url": "https://noshmate.pk/corporate-catering/",
+              "description": "Individually packed lunches delivered to every desk on your floor, coordinated through one office contact and billed on one invoice."
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://noshmate.pk/corporate-catering/"
+          }
+        ]
+      }
+    }
+  ]
 }
 </script>
 
