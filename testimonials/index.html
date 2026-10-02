@@ -458,6 +458,62 @@
         gap: 14px;
       }
     }
+
+    /* ---------- Leave a Google review card ---------- */
+    .g-card.g-card-cta {
+      display: block;
+      flex: none;
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding: 30px 32px 28px;
+      color: inherit;
+    }
+
+    .g-card-cta .g-body {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 18px;
+      max-width: 760px;
+    }
+
+    .g-card-cta .g-name {
+      font-size: 15.5px;
+    }
+
+    .g-card-cta .g-time {
+      color: var(--nosh-green);
+    }
+
+    .g-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--nosh-green);
+    }
+
+    .g-cta-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .g-card-cta:hover .g-cta-link svg {
+      transform: translateX(5px);
+    }
+
+    @media (max-width: 768px) {
+      .g-card.g-card-cta {
+        margin: 36px 20px 0;
+        padding: 22px 20px;
+      }
+
+      .g-card-cta .g-body {
+        font-size: 15.5px;
+      }
+    }
   </style>
 </head>
 
@@ -1200,6 +1256,24 @@
         </article>
 
       </div>
+    </div>
+    <div class="container">
+      <a class="g-card g-card-cta" href="https://g.page/r/Cfc4z4u_jC6nEBM/review" target="_blank" rel="noopener">
+        <span class="g-quote-mark">&rdquo;</span>
+        <div class="g-head">
+          <div class="g-avatar" style="background:#14532D;">G</div>
+          <div>
+            <div class="g-name">Google Reviews</div>
+            <div class="g-role">NoshMaté &middot; Lahore</div>
+          </div>
+        </div>
+        <div class="g-stars-row">
+          <span class="g-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+          <span class="g-time">Share your experience</span>
+        </div>
+        <p class="g-body">Love our service? Leave us a Google review! Your feedback helps us grow.</p>
+        <span class="g-cta-link">Leave a Google review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
     </div>
   </section>
 
