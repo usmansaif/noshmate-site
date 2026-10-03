@@ -655,12 +655,25 @@ footer {
 
 /* ---------- Generic page hero (sub-pages) ---------- */
 .page-hero {
+  position: relative;
   padding: 74px 20px 60px;
-  background:
-    radial-gradient(560px 420px at 14% 0%, rgba(52, 199, 123, 0.16), transparent 60%),
-    radial-gradient(520px 420px at 88% 6%, rgba(242, 130, 12, 0.14), transparent 60%),
-    var(--cream);
   text-align: center;
+}
+
+/* Background reaches up behind the sticky header (same as the homepage hero
+   mesh) so there's no plain band above the hero at the top of the page. */
+.page-hero::before {
+  content: "";
+  position: absolute;
+  top: -180px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background:
+    radial-gradient(560px 420px at 14% 180px, rgba(52, 199, 123, 0.16), transparent 60%),
+    radial-gradient(520px 420px at 88% 186px, rgba(242, 130, 12, 0.14), transparent 60%),
+    var(--cream);
 }
 
 .page-hero .eyebrow {
