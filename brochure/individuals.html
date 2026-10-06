@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoshMaté Brochure, For Individuals (A5)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --nosh-green:#14532D;
+    --nosh-green-light:#1F7A47;
+    --ink:#12181A;
+    --ink-soft:#5B6B65;
+    --cream:#FFF8EF;
+    --orange:#F2820C;
+    --orange-light:#FFA84D;
+  }
+  *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Manrope', Arial, sans-serif;
+    background:#9aa29c;
+    color:var(--ink);
+  }
+  h1,h2,h3,h4{
+    font-family:'Plus Jakarta Sans', Arial, sans-serif;
+    margin:0;
+  }
+  p{ margin:0; }
+
+  /* ---------- Screen preview chrome ---------- */
+  .screen-toolbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--nosh-green);
+    color:#fff;
+    padding:12px 18px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+    font-size:14px;
+  }
+  .screen-toolbar b{ color:var(--orange-light); }
+  .pages-wrap{
+    display:flex;
+    justify-content:center;
+    padding:28px 16px 60px;
+  }
+
+  /* ---------- A5 page ---------- */
+  .page{
+    width:148mm;
+    height:210mm;
+    background:var(--cream);
+    box-shadow:0 8px 28px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ===== Hero (diagonal, full bleed) ===== */
+  .hero{
+    position:relative;
+    background:var(--nosh-green);
+    color:#fff;
+    padding:7mm 9mm 12mm;
+    clip-path:polygon(0 0,100% 0,100% 88%,0 100%);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-18mm; right:-18mm;
+    width:46mm; height:46mm;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-10mm; left:-14mm;
+    width:34mm; height:34mm;
+    border-radius:50%;
+    background:rgba(242,130,12,.18);
+  }
+  .brand-row{ display:flex; justify-content:center; margin-bottom:4mm; position:relative; z-index:1; }
+  .brand-row svg{ width:56mm; height:auto; }
+  .hero .eyebrow{
+    display:block;
+    text-align:center;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--orange-light);
+    font-weight:800;
+    margin-bottom:2mm;
+    position:relative; z-index:1;
+  }
+  .hero h1{
+    text-align:center;
+    font-size:21px;
+    line-height:1.18;
+    font-weight:800;
+    position:relative; z-index:1;
+  }
+  .hero p{
+    text-align:center;
+    font-size:10.5px;
+    line-height:1.4;
+    color:#E7F2EA;
+    margin-top:2.6mm;
+    position:relative; z-index:1;
+  }
+
+  /* ===== Body sections ===== */
+  .body{
+    flex:1;
+    padding:3mm 9mm 0;
+    display:flex;
+    flex-direction:column;
+    gap:4mm;
+  }
+
+  .section-kicker{
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--orange);
+  }
+
+  /* highlights: plain icon row, no boxes */
+  .highlights{
+    display:flex;
+    justify-content:space-between;
+    text-align:center;
+  }
+  .highlight{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.4mm;
+  }
+  .highlight .ico{
+    width:9mm; height:9mm; border-radius:50%;
+    background:var(--nosh-green);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .highlight .ico svg{ width:4.6mm; height:4.6mm; }
+  .highlight span{
+    font-size:9.2px;
+    font-weight:800;
+    color:var(--ink);
+    line-height:1.2;
+  }
+
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg, transparent, #D8CBAE 15%, #D8CBAE 85%, transparent);
+  }
+
+  /* menu: flowing text, no card */
+  .menu-lead{
+    font-size:10.3px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .menu-lead strong{ color:var(--nosh-green); }
+  .menu-dishes{
+    margin-top:1.6mm;
+    font-size:10px;
+    font-style:italic;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .menu-dishes b{ color:var(--orange); font-style:normal; font-weight:800; }
+
+  /* plans: typographic rows, no boxes */
+  .plans{
+    display:flex;
+    flex-direction:column;
+    gap:2.4mm;
+  }
+  .plan{
+    display:flex;
+    align-items:baseline;
+    gap:2.6mm;
+    padding-bottom:2.2mm;
+    border-bottom:1px solid #E3D9C6;
+  }
+  .plan:last-child{ border-bottom:none; padding-bottom:0; }
+  .plan .tag{
+    font-size:7.6px;
+    font-weight:800;
+    text-transform:uppercase;
+    color:var(--orange);
+    letter-spacing:.04em;
+    flex:none;
+    width:17mm;
+  }
+  .plan.featured .tag{ color:var(--nosh-green); }
+  .plan h4{
+    font-size:11.5px;
+    font-weight:800;
+    color:var(--ink);
+    display:inline;
+  }
+  .plan p{
+    font-size:9.6px;
+    color:var(--ink-soft);
+    display:inline;
+    margin-left:1.6mm;
+  }
+
+  /* pricing: full bleed tint band */
+  .price-band{
+    background:#FFF0DC;
+    padding:3mm 9mm;
+    font-size:9.6px;
+    line-height:1.45;
+    color:var(--ink);
+  }
+  .price-band strong{ color:var(--nosh-green); }
+
+  /* steps: big numerals, no boxes */
+  .steps{
+    display:flex;
+    flex-direction:column;
+    gap:2.6mm;
+  }
+  .step{
+    display:flex;
+    align-items:center;
+    gap:3mm;
+  }
+  .step .num{
+    width:8mm; height:8mm;
+    border-radius:50%;
+    background:var(--orange);
+    color:#fff;
+    font-weight:800;
+    font-size:11px;
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .step h4{
+    font-size:10.5px;
+    font-weight:800;
+    color:var(--ink);
+    display:inline;
+  }
+  .step p{
+    font-size:9.4px;
+    color:var(--ink-soft);
+    display:inline;
+    margin-left:1.4mm;
+  }
+
+  /* contact footer */
+  .contact-band{
+    background:var(--nosh-green);
+    color:#fff;
+    text-align:center;
+    padding:4.5mm 9mm 6mm;
+  }
+  .contact-band h3{ font-size:13px; font-weight:800; }
+  .contact-band .wa-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:2mm;
+    background:var(--orange);
+    color:#fff;
+    font-weight:800;
+    font-size:10.5px;
+    border-radius:8px;
+    padding:2.4mm 6mm;
+    margin:2.4mm 0 2mm;
+  }
+  .contact-band .wa-btn svg{ width:4mm; height:4mm; }
+  .contact-band .phone{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.02em;
+  }
+  .contact-band .meta{
+    font-size:8.6px;
+    color:#DDEBDF;
+    margin-top:1.4mm;
+  }
+
+  /* ---------- Print rules ---------- */
+  @page{
+    size:148mm 210mm;
+    margin:0;
+  }
+  @media print{
+    html,body{ background:#fff !important; }
+    .screen-toolbar{ display:none; }
+    .pages-wrap{ padding:0; }
+    .page{
+      box-shadow:none;
+      width:148mm;
+      height:210mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="screen-toolbar">
+    <span>NoshMaté Brochure, For Individuals, A5 Portrait (148&nbsp;&times;&nbsp;210&nbsp;mm). Press <b>Ctrl+P</b> to print, and enable "Background graphics" in the print dialog so the colors show.</span>
+  </div>
+
+  <div class="pages-wrap">
+
+    <div class="page">
+
+      <div class="hero">
+        <div class="brand-row">
+          <svg viewBox="0 0 450 111" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NoshMaté">
+            <path d="M34.5164 71.0931C37.2856 71.0411 39.6999 71.2611 42.3523 72.1042C47.0019 73.5824 50.9593 76.5656 55.5398 78.2341C56.9573 78.7506 58.3774 79.0975 59.872 79.4261C62.565 80.0179 65.7426 79.9194 67.9495 81.7745C69.6054 83.1668 69.2412 85.8182 67.78 87.1989C64.3196 90.4678 57.681 89.2328 53.5224 88.2287C51.6112 87.7676 49.9093 86.8993 47.9374 86.9158C46.3266 86.9026 46.1739 87.8338 47.4662 88.6757C50.7274 90.7997 55.3472 92.3038 59.2282 92.7343C65.6788 93.4495 72.347 90.0564 77.3464 86.2958C79.9208 84.3588 82.1624 82.2182 84.7029 80.258C87.0041 78.4725 88.8475 76.8567 91.8731 76.4069C92.9839 76.2519 94.8175 76.5306 95.6966 77.2921C97.8364 79.1463 95.7744 81.8614 94.5857 83.3473L92.5527 86.0086C84.3602 96.7059 74.4028 105.034 60.6462 106.629C50.3594 107.866 40.2216 104.809 31.5882 99.2919C30.1848 98.3954 29.0516 100.003 26.6054 97.9757C21.7856 94.0504 18.1037 88.871 15.6253 83.1925C15.3012 82.4491 14.3 80.6123 14.9572 79.989C15.8745 79.1173 17.4517 78.5958 18.5073 77.8707C23.8787 74.1802 27.813 71.4115 34.5164 71.0931Z" fill="#fff"/>
+            <path d="M57.1244 38.6361C58.901 38.4894 61.2871 39.8073 61.2791 41.7776C61.2742 42.9957 59.9889 44.1462 59.1565 44.935C60.2541 45.1984 61.8117 45.4116 62.9905 45.6556C65.5624 46.2075 68.023 47.1878 70.2698 48.5556C75.9094 51.9074 79.9821 57.366 81.5896 63.7261C81.7941 64.5453 82.2485 66.1696 81.809 66.9003C81.0921 67.523 77.9184 67.4279 76.8771 67.4398C74.9864 67.4648 73.0962 67.4745 71.2056 67.4688L57.5866 67.4964L39.1874 67.4585C37.9178 67.4461 34.0654 67.5481 33.0387 67.2438C32.21 66.6008 32.674 65.1125 32.8688 64.222C34.1437 58.3967 37.6741 53.4791 42.3761 49.954C46.9841 46.4994 50.2236 45.8067 55.739 44.9877C55.648 44.925 55.5574 44.8617 55.4673 44.7976C52.2902 42.5371 53.4905 39.1547 57.1244 38.6361Z" fill="#FFA84D"/>
+            <path d="M47.5278 69.943C50.7846 69.8469 54.3262 69.9223 57.6083 69.9227L75.5996 69.9086L85.1587 69.8728C86.6777 69.8695 88.3813 69.8013 89.8622 69.9281C91.4267 70.0621 91.9564 72.2973 90.6105 73.1556C89.5426 73.8369 88.1031 74.0843 86.9186 74.502C85.0942 75.145 83.7242 75.9867 82.192 77.1241C78.5084 80.0064 76.6086 83.0419 71.924 85.0923C72.0371 77.7027 66.2957 77.5545 60.8782 76.5272C59.3425 76.2356 57.8364 75.8058 56.3782 75.243C52.9028 73.9184 49.1332 71.6997 45.7148 70.0189L47.5278 69.943Z" fill="#FFA84D"/>
+            <path d="M44.1899 26.7923C45.3496 26.6371 45.6562 28.173 47.1049 28.0946C48.4148 28.0237 49.4119 27.7008 50.6564 27.3666C50.8699 28.051 51.0231 28.5122 51.3031 29.1739C49.8433 29.626 48.0001 29.8622 46.4602 30.2405C40.4297 31.7218 34.6245 34.449 29.9306 38.565C24.0667 43.707 19.7749 50.8056 18.1036 58.434C16.9071 63.8952 17.4355 69.5475 18.2077 75.02C18.1998 75.0492 18.192 75.0783 18.1842 75.1075C17.2997 75.8649 14.8201 77.3916 13.7853 77.8701C13.6058 77.4164 13.4991 77.0191 13.3807 76.5476C10.6281 65.5823 12.3585 54.6922 18.443 44.9804C24.3149 35.7825 33.5584 29.2527 44.1899 26.7923Z" fill="#fff"/>
+            <path d="M72.4135 30.3047C73.3094 30.6127 74.0671 31.0368 74.9222 31.465C89.4803 38.7587 97.6778 55.4697 95.3592 71.4342C95.2242 72.3648 95.0239 74.9435 93.4652 73.8431L93.442 73.6842C94.3807 70.5205 93.8269 69.5216 91.582 67.4035C91.712 63.3297 91.4529 59.7493 90.1963 55.8062C87.7577 47.9058 82.6644 41.0905 75.7781 36.5139C74.0787 35.378 71.6478 34.0979 69.8086 33.1479C70.8263 32.4052 71.6691 31.3046 72.4135 30.3047Z" fill="#fff"/>
+            <path d="M61.1809 2.0089L61.4617 2C61.7241 2.15675 61.5314 2.73561 61.4485 3.01267C60.8957 4.73999 60.4226 6.60629 59.9895 8.34827C58.9602 12.4875 60.425 15.8971 61.7782 19.7191C62.8128 22.6416 62.0609 26.071 60.5332 28.6963C59.9084 29.7699 57.2948 33.5521 56.1783 33.8772C56.0338 33.6174 55.7921 33.1158 55.8189 32.8289C56.0159 30.7169 57.1949 28.9759 57.5897 26.7664C58.6942 20.5828 53.7436 17.6706 55.3456 11.0871C56.0811 8.06484 58.6087 3.62845 61.1809 2.0089Z" fill="#FFA84D"/>
+            <path d="M69.014 11.0391C69.3729 11.0391 69.4655 11.0403 69.7073 11.2828C69.7179 12.6689 68.7152 14.198 69.0447 15.9677C69.4264 18.0176 70.7056 19.2048 71.305 21.0224C72.5565 24.8175 70.5714 28.2542 67.291 30.2015C66.9453 30.3446 66.802 30.3743 66.4704 30.236C66.1376 29.6025 66.9786 28.5294 67.2725 27.7391C67.473 27.1931 67.6103 26.6259 67.6818 26.0487C68.2954 21.324 64.5716 19.9801 65.7161 15.4805C66.1672 13.7064 67.4613 11.9739 69.014 11.0391Z" fill="#FFA84D"/>
+            <path d="M49.6671 6.24234C49.927 6.24996 49.8659 6.20998 50.0412 6.34101C50.2115 7.16266 48.9231 9.78307 49.1882 11.3876C49.7437 14.7511 52.6462 17.1576 51.7102 20.8207C51.1574 22.9843 49.7697 24.7926 47.8178 25.9553C47.658 25.961 47.5446 25.9484 47.3866 25.9367L47.2747 25.8054C47.1534 25.099 47.8879 23.9362 48.0324 23.2002C48.4533 21.0574 48.1687 19.1882 47.0716 17.2889C45.9702 15.3822 45.3571 13.1463 46.0099 10.9666C46.5228 9.25412 48.0865 7.10166 49.6671 6.24234Z" fill="#FFA84D"/>
+            <path d="M144.462 88H136.377L118.07 60.3377V88H109.985V47.6327H118.07L136.377 75.3527V47.6327H144.462V88ZM171.162 88.4043C167.389 88.4043 163.924 87.5187 160.767 85.7477C157.61 83.9767 155.108 81.532 153.26 78.4135C151.412 75.2565 150.488 71.6952 150.488 67.7297C150.488 63.8027 151.412 60.28 153.26 57.1615C155.108 54.0045 157.61 51.5405 160.767 49.7695C163.924 47.9985 167.389 47.113 171.162 47.113C174.974 47.113 178.439 47.9985 181.557 49.7695C184.714 51.5405 187.198 54.0045 189.007 57.1615C190.855 60.28 191.779 63.8027 191.779 67.7297C191.779 71.6952 190.855 75.2565 189.007 78.4135C187.198 81.532 184.714 83.9767 181.557 85.7477C178.4 87.5187 174.935 88.4043 171.162 88.4043ZM171.162 81.1855C173.588 81.1855 175.725 80.6465 177.573 79.5685C179.421 78.452 180.864 76.8735 181.904 74.833C182.943 72.7925 183.463 70.4247 183.463 67.7297C183.463 65.0347 182.943 62.6862 181.904 60.6842C180.864 58.6437 179.421 57.0845 177.573 56.0065C175.725 54.9285 173.588 54.3895 171.162 54.3895C168.737 54.3895 166.581 54.9285 164.694 56.0065C162.846 57.0845 161.403 58.6437 160.363 60.6842C159.324 62.6862 158.804 65.0347 158.804 67.7297C158.804 70.4247 159.324 72.7925 160.363 74.833C161.403 76.8735 162.846 78.452 164.694 79.5685C166.581 80.6465 168.737 81.1855 171.162 81.1855ZM211.712 88.4043C208.901 88.4043 206.36 87.923 204.089 86.9605C201.856 85.998 200.085 84.612 198.776 82.8025C197.467 80.993 196.793 78.8562 196.755 76.3922H205.417C205.533 78.0477 206.11 79.3567 207.15 80.3192C208.228 81.2817 209.691 81.763 211.539 81.763C213.425 81.763 214.907 81.3202 215.985 80.4347C217.063 79.5107 217.602 78.3172 217.602 76.8542C217.602 75.6607 217.237 74.679 216.505 73.909C215.774 73.139 214.85 72.5422 213.733 72.1187C212.655 71.6567 211.154 71.1562 209.229 70.6172C206.611 69.8472 204.474 69.0965 202.818 68.365C201.201 67.595 199.796 66.4592 198.603 64.9577C197.448 63.4177 196.87 61.3772 196.87 58.8363C196.87 56.4492 197.467 54.3702 198.66 52.5992C199.854 50.8282 201.529 49.4807 203.685 48.5567C205.841 47.5942 208.305 47.113 211.077 47.113C215.235 47.113 218.603 48.1332 221.183 50.1737C223.801 52.1757 225.245 54.9862 225.514 58.6052H216.621C216.544 57.2192 215.947 56.0835 214.83 55.198C213.752 54.274 212.309 53.812 210.499 53.812C208.921 53.812 207.65 54.2162 206.688 55.0247C205.764 55.8332 205.302 57.0075 205.302 58.5475C205.302 59.6255 205.648 60.5302 206.341 61.2617C207.073 61.9547 207.958 62.5322 208.998 62.9942C210.076 63.4177 211.577 63.9182 213.502 64.4957C216.12 65.2657 218.257 66.0357 219.912 66.8057C221.568 67.5757 222.992 68.7307 224.186 70.2707C225.379 71.8107 225.976 73.832 225.976 76.3345C225.976 78.4905 225.418 80.4925 224.301 82.3405C223.185 84.1885 221.549 85.6707 219.393 86.7872C217.237 87.8652 214.676 88.4043 211.712 88.4043ZM266.423 47.6905V88H258.338V70.8482H241.07V88H232.985V47.6905H241.07V64.2647H258.338V47.6905H266.423Z" fill="#fff"/>
+            <path d="M329.284 47.6905V88H321.199V61.7815L310.4 88H304.278L293.421 61.7815V88H285.336V47.6905H294.519L307.339 77.6627L320.16 47.6905H329.284ZM361.994 80.3192H345.94L343.283 88H334.794L349.289 47.6327H358.703L373.198 88H364.651L361.994 80.3192ZM359.8 73.8512L353.967 56.9882L348.134 73.8512H359.8ZM406.047 47.6905V54.2162H395.306V88H387.221V54.2162H376.479V47.6905H406.047ZM420.031 54.2162V64.3225H433.603V70.7327H420.031V81.4165H435.335V88H411.946V47.6327H435.335V54.2162H420.031Z" fill="#FFA84D"/>
+          </svg>
+        </div>
+        <span class="eyebrow">For Individuals</span>
+        <h1>Fresh Lunch,<br>Delivered to Your Desk</h1>
+        <p>Home style meals, every working day. No app, no account, just WhatsApp.</p>
+      </div>
+
+      <div class="body">
+
+        <div class="highlights">
+          <div class="highlight">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c1.5 3 .5 4.5-.5 6-1.3 2-1 3.6.5 3.6 1.2 0 1.8-1 1.5-2.3 2 1.6 3.5 4 3.5 6.7a5 5 0 1 1-10 0c0-3.2 1.7-5.3 3-7.3-.6-2.2-.2-4.5 2-6.7Z" fill="#fff"/></svg></span>
+            <span>Fresh Daily</span>
+          </div>
+          <div class="highlight">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span>Individually Packed</span>
+          </div>
+          <div class="highlight">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+            <span>WhatsApp Order</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <p class="section-kicker">What is in Your Box</p>
+          <p class="menu-lead"><strong>Chicken, rice, Chinese, salad, vegetable and bread.</strong> Six dishes, rotating daily, Monday to Saturday, so you never repeat a meal in the same week.</p>
+          <p class="menu-dishes">Try our <b>Chicken Karahi</b>, <b>Chowmein</b> and <b>Garden Salad</b> this week.</p>
+        </div>
+
+        <div>
+          <p class="section-kicker">Plans For You</p>
+          <div class="plans">
+            <div class="plan">
+              <span class="tag">Single</span>
+              <h4>Everyday Lunch Box</h4><p>order day by day</p>
+            </div>
+            <div class="plan featured">
+              <span class="tag">Popular</span>
+              <h4>Weekly &amp; Monthly</h4><p>one invoice, pause anytime</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-kicker">How to Order</p>
+          <div class="steps">
+            <div class="step">
+              <span class="num">1</span>
+              <h4>Message us</h4><p>on WhatsApp with area and plan</p>
+            </div>
+            <div class="step">
+              <span class="num">2</span>
+              <h4>Pay in advance</h4><p>bank transfer, JazzCash or Easypaisa</p>
+            </div>
+            <div class="step">
+              <span class="num">3</span>
+              <h4>Enjoy lunch</h4><p>delivered next working day by 11 PM cutoff</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="price-band">
+        <strong>Pricing:</strong> depends on your plan. Message your area and plan for a same day quote. Any undelivered meal is <strong>100% refunded</strong>.<br>
+        <strong>We deliver to:</strong> DHA, Gulberg, Johar Town, Model Town, Faisal Town, Wapda Town and more.
+      </div>
+
+      <div class="contact-band">
+        <h3>Ready to Order?</h3>
+        <div class="wa-btn">
+          <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Order on WhatsApp
+        </div>
+        <p class="phone">+92 330 9993307</p>
+        <p class="meta">noshmate.pk &nbsp;&middot;&nbsp; Mon to Sat, 9 AM to 6 PM</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
