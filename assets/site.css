@@ -1442,3 +1442,368 @@ blockquote.quote-card cite {
     position: static;
   }
 }
+
+/* ---------- Lahore Expo Center catering ---------- */
+.expo-note {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--nosh-green);
+}
+
+.expo-cal {
+  display: grid;
+  gap: 10px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.expo-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 20px 14px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.expo-row[hidden] {
+  display: none;
+}
+
+.expo-row:hover {
+  border-color: var(--nosh-green);
+  box-shadow: 0 10px 26px rgba(18, 24, 26, 0.09);
+  transform: translateY(-2px);
+}
+
+.expo-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  border-radius: 14px;
+  background: var(--grad-green);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.expo-date b {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.expo-info strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.expo-info small {
+  display: block;
+  margin-top: 3px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.expo-go {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--nosh-green);
+  white-space: nowrap;
+}
+
+.expo-go::after {
+  content: " \2192";
+}
+
+.expo-stat {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--mate-orange);
+}
+
+.menu-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.menu-tier {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 30px 26px 26px;
+  border-top: 4px solid var(--nosh-green-light);
+}
+
+.menu-tier:nth-child(even) {
+  border-top-color: var(--mate-orange);
+}
+
+.menu-tier-no {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: rgba(18, 24, 26, 0.07);
+}
+
+.menu-tier h3 {
+  margin: 0 0 4px;
+  font-size: 19px;
+  color: var(--ink);
+}
+
+.menu-tier-sub {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.menu-tier ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.menu-tier li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.menu-tier li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.calc-cta {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.calc-cta h2 {
+  margin: 0 0 12px;
+}
+
+.calc-cta p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.expo-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.expo-pager a {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--nosh-green);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.expo-pager a:hover {
+  border-color: var(--nosh-green);
+  transform: translateY(-2px);
+}
+
+/* Bulk order calculator */
+.calc-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 36px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  display: grid;
+  gap: 28px;
+}
+
+.calc-field {
+  display: grid;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.calc-field select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.calc-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.calc-label output {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--nosh-green);
+}
+
+.calc-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(18, 24, 26, 0.12);
+  outline-offset: 6px;
+}
+
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--mate-orange);
+  border: 4px solid #fff;
+  box-shadow: 0 3px 10px rgba(18, 24, 26, 0.3);
+  cursor: pointer;
+}
+
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--mate-orange);
+  border: 4px solid #fff;
+  box-shadow: 0 3px 10px rgba(18, 24, 26, 0.3);
+  cursor: pointer;
+}
+
+.calc-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.calc-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.calc-summary small {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ink-soft);
+}
+
+.calc-summary strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.calc-warn {
+  margin: -12px 0 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #FFF3E0;
+  color: #8A4B00;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.calc-warn[hidden] {
+  display: none;
+}
+
+.calc-btn {
+  justify-content: center;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.calc-foot {
+  margin: -12px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .expo-row {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .expo-date {
+    height: 56px;
+    font-size: 19px;
+  }
+
+  .expo-go {
+    grid-column: 1 / -1;
+  }
+
+  .calc-card {
+    padding: 24px 18px;
+  }
+
+  .calc-summary strong {
+    font-size: 20px;
+  }
+}
