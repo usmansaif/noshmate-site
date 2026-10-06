@@ -423,6 +423,7 @@
         <h2>Upcoming Lahore Expo Center Events</h2>
         <p>Pick your event for dates and a direct booking link. Food delivery near Expo Center Lahore for every exhibition below.</p>
       </div>
+      <div class="expo-tabs" id="expoTabs" role="tablist" aria-label="Filter events by month"></div>
       <div class="expo-cal" id="expoCal">
         <a class="expo-row" href="/lahore-expo-center-catering/ipex-poultry-expo/" data-end="2026-10-10">
           <span class="expo-date"><b>Oct</b>08</span>
@@ -803,9 +804,39 @@
   <script>
     (function () {
       var today = new Date().toISOString().slice(0, 10);
-      document.querySelectorAll('#expoCal .expo-row').forEach(function (r) {
+      var rows = [].slice.call(document.querySelectorAll('#expoCal .expo-row'));
+      rows.forEach(function (r) {
         if (r.getAttribute('data-end') < today) r.hidden = true;
       });
+      var live = rows.filter(function (r) { return !r.hidden; });
+      var groups = [], map = {};
+      live.forEach(function (r) {
+        var t = r.querySelector('small').textContent.split(/[\d–]/)[0].trim().slice(0, 3);
+        var y = (r.querySelector('small').textContent.match(/\d{4}/) || [''])[0];
+        var key = t + ' ' + y;
+        r.setAttribute('data-month', key);
+        if (!map[key]) { map[key] = []; groups.push(key); }
+        map[key].push(r);
+      });
+      var tabs = document.getElementById('expoTabs');
+      if (!tabs || groups.length < 2) return;
+      function show(key) {
+        live.forEach(function (r) { r.hidden = key !== 'all' && r.getAttribute('data-month') !== key; });
+        [].forEach.call(tabs.children, function (b) {
+          b.setAttribute('aria-selected', b.getAttribute('data-key') === key ? 'true' : 'false');
+        });
+      }
+      function add(key, label, count) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'expo-tab'; b.setAttribute('role', 'tab');
+        b.setAttribute('data-key', key);
+        b.innerHTML = label + '<span>' + count + '</span>';
+        b.addEventListener('click', function () { show(key); });
+        tabs.appendChild(b);
+      }
+      groups.forEach(function (k) { add(k, k, map[k].length); });
+      add('all', 'All', live.length);
+      show(groups[0]);
     })();
   </script>
 </body>
