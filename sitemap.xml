@@ -91,6 +91,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://noshmate.pk/our-story/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://noshmate.pk/testimonials/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
