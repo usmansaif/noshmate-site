@@ -1918,3 +1918,40 @@ blockquote.quote-card cite {
   font-weight: 500;
   color: var(--ink-soft);
 }
+
+.expo-table-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.expo-sub {
+  max-width: 760px;
+  margin: 36px auto 14px;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.expo-fine {
+  max-width: 760px;
+  margin: 14px auto 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* Eight nav items: tighten between the hamburger breakpoint and wide desktop */
+@media (min-width: 901px) and (max-width: 1140px) {
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-links a.nav-link {
+    padding: 9px 7px;
+    font-size: 13.5px;
+  }
+}
+
+.info-grid.cols-4 {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
