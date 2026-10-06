@@ -14,6 +14,78 @@
   var evt = document.getElementById('calcEvent');
   if (!head || !days) return;
 
+  // Searchable event picker (combobox). evt is a hidden input holding the slug.
+  var search = document.getElementById('calcEventSearch');
+  var list = document.getElementById('calcEventList');
+  var empty = document.getElementById('calcEventEmpty');
+  var clear = document.getElementById('calcEventClear');
+  var items = Array.prototype.slice.call(list.children);
+  var active = -1;
+
+  function visible() { return items.filter(function (li) { return !li.hidden; }); }
+  function setActive(i) {
+    var v = visible();
+    items.forEach(function (li) { li.classList.remove('active'); });
+    active = v.length ? (i + v.length) % v.length : -1;
+    if (active >= 0) {
+      v[active].classList.add('active');
+      v[active].scrollIntoView({ block: 'nearest' });
+      search.setAttribute('aria-activedescendant', v[active].id);
+    }
+  }
+  function openList(open) {
+    list.hidden = !open;
+    search.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!open) search.removeAttribute('aria-activedescendant');
+  }
+  function filter() {
+    var q = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var shown = 0;
+    items.forEach(function (li) {
+      var hay = li.getAttribute('data-search');
+      var ok = q.every(function (t) { return hay.indexOf(t) !== -1; });
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty.hidden = shown > 0 || list.hidden;
+    setActive(0);
+  }
+  function choose(li) {
+    evt.value = li.getAttribute('data-value');
+    search.value = li.querySelector('strong').textContent;
+    clear.hidden = false;
+    openList(false);
+    empty.hidden = true;
+  }
+  function reset() {
+    evt.value = '';
+    search.value = '';
+    clear.hidden = true;
+    filter();
+  }
+
+  search.addEventListener('focus', function () { search.select(); openList(true); filter(); });
+  search.addEventListener('input', function () {
+    evt.value = '';
+    clear.hidden = !search.value;
+    openList(true);
+    filter();
+  });
+  search.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (list.hidden) { openList(true); filter(); } else setActive(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+    else if (e.key === 'Enter') { var v = visible(); if (!list.hidden && v[active]) { e.preventDefault(); choose(v[active]); } }
+    else if (e.key === 'Escape') { openList(false); empty.hidden = true; }
+  });
+  list.addEventListener('mousedown', function (e) {
+    var li = e.target.closest('li');
+    if (li) { e.preventDefault(); choose(li); }
+  });
+  clear.addEventListener('click', function () { reset(); search.focus(); });
+  document.addEventListener('mousedown', function (e) {
+    if (!document.getElementById('calcCombo').contains(e.target)) { openList(false); empty.hidden = true; }
+  });
+
   var out = {
     head: document.getElementById('calcHeadOut'),
     days: document.getElementById('calcDaysOut'),
@@ -42,7 +114,8 @@
 
   var params = new URLSearchParams(location.search);
   var preset = params.get('event');
-  if (preset && window.EXPO_EVENTS && window.EXPO_EVENTS[preset]) evt.value = preset;
+  var presetLi = items.filter(function (li) { return li.getAttribute('data-value') === preset; })[0];
+  if (presetLi) choose(presetLi);
 
   head.addEventListener('input', render);
   days.addEventListener('input', render);

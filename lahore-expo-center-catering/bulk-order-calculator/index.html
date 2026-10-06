@@ -180,42 +180,48 @@
   <section class="plain-section alt">
     <div class="container">
       <form class="calc-card" id="expoCalc" onsubmit="return false">
-        <label class="calc-field">Event (optional)
-          <select id="calcEvent">
-            <option value="">Select your Expo Center event</option>
-            <option value="ipex-poultry-expo">International Poultry Expo (IPEX-2026) (October 08–10, 2026)</option>
-            <option value="igatex-pakistan">IGATEX PAKISTAN 2026 (October 15–18, 2026)</option>
-            <option value="furniture-living-expo">Furniture &amp; Living Expo (October 23–25, 2026)</option>
-            <option value="pubg-lahore-expo">PUBG (October 24–25, 2026)</option>
-            <option value="young-entrepreneur-fest-2026">Young Entrepreneur Fest 2026 (October 25, 2026)</option>
-            <option value="pakistan-agroshow-seed-show">3rd Pakistan AgroShow / 3rd Pakistan Seed Show (October 29–31, 2026)</option>
-            <option value="solar-energy-storage-ev-fire-safety-expo">Solar &amp; Energy Storage, Electric Vehicles, Fire &amp; Safety Expo (November 04–06, 2026)</option>
-            <option value="itif-asia-industrial-engineering-exhibition">24th International Industrial Engineering Exhibition - ITIF ASIA (November 04–06, 2026)</option>
-            <option value="educational-arena">Educational Arena (November 13–15, 2026)</option>
-            <option value="pakistan-industrial-expo">10th Pakistan Industrial Expo (November 14–16, 2026)</option>
-            <option value="f-plus">F Plus (November 21, 2026)</option>
-            <option value="prspak-plastics-rubber-sealant-expo">Plastics, Rubber and Sealant Pakistan Expo (PRSPAK) (November 26–28, 2026)</option>
-            <option value="green-pakistan-expo">Green Pakistan Expo (November 26–28, 2026)</option>
-            <option value="iapex-lahore-2026">IAPEX Lahore 2026 (December 04–06, 2026)</option>
-            <option value="hum-masala-family-festival">Hum Masala Family Festival (January 02–03, 2027)</option>
-            <option value="pakistan-plastic-show">Pakistan Plastic Show (January 07–09, 2027)</option>
-            <option value="pakistan-mega-leather-show">12th Pakistan Mega Leather Show 2027 (January 08–10, 2027)</option>
-            <option value="gaba-furniture-expo">Gaba Furniture Expo (January 15–17, 2027)</option>
-            <option value="lahore-international-book-fair-libf">Lahore International Book Fair (LIBF) 2027 (January 20–24, 2027)</option>
-            <option value="pak-pharma-healthcare-expo">Pak Pharma &amp; Healthcare Expo (March 17–19, 2027)</option>
-            <option value="pakistan-footwear-material-show">Pakistan Footwear &amp; Material Show (March 26–28, 2027)</option>
-            <option value="pakistan-hvacr-international-expo">32nd Pakistan HVACR International Expo &amp; Conference 2027 (April 01–03, 2027)</option>
-            <option value="solar-storage-pakistan">Solar &amp; Storage Pakistan (April 09–11, 2027)</option>
-            <option value="pakistan-chemical-expo">Pakistan Chemical Expo (April 22–23, 2027)</option>
-            <option value="health-asia">Health Asia (April 22–24, 2027)</option>
-            <option value="ieeep-expo-2027">IEEEP EXPO 2027 (May 06–08, 2027)</option>
-            <option value="lawn-and-looms-expo-2027">LAWN &amp; LOOMS EXPO 2027 (May 08–09, 2027)</option>
-            <option value="pakistan-coating-show">Pakistan Coating Show (June 03–05, 2027)</option>
-            <option value="color-and-chem-expo-2027">12th Color &amp; Chem Expo 2027 (August 21–22, 2027)</option>
-            <option value="digital-textile-printing-industry-expo-2027">Digital Textile Printing Industry Expo 2027 (August 21–22, 2027)</option>
-            <option value="dairy-asia-expo">DAIRY ASIA EXPO (October 14–16, 2027)</option>
-          </select>
-        </label>
+        <div class="calc-field">
+          <label for="calcEventSearch">Event (optional)</label>
+          <div class="combo" id="calcCombo">
+            <input type="text" id="calcEventSearch" class="combo-input" role="combobox" aria-expanded="false" aria-controls="calcEventList" aria-autocomplete="list" autocomplete="off" placeholder="Type to search events, e.g. IPEX or leather">
+            <button type="button" class="combo-clear" id="calcEventClear" aria-label="Clear event" hidden>&times;</button>
+            <input type="hidden" id="calcEvent" value="">
+            <ul class="combo-list" id="calcEventList" role="listbox" hidden>
+              <li role="option" id="opt-ipex-poultry-expo" data-value="ipex-poultry-expo" data-search="international poultry expo (ipex-2026) ipex poultry expo october 08–10, 2026"><strong>International Poultry Expo (IPEX-2026)</strong><small>October 08–10, 2026</small></li>
+              <li role="option" id="opt-igatex-pakistan" data-value="igatex-pakistan" data-search="igatex pakistan 2026 igatex pakistan october 15–18, 2026"><strong>IGATEX PAKISTAN 2026</strong><small>October 15–18, 2026</small></li>
+              <li role="option" id="opt-furniture-living-expo" data-value="furniture-living-expo" data-search="furniture &amp; living expo furniture &amp; living expo october 23–25, 2026"><strong>Furniture &amp; Living Expo</strong><small>October 23–25, 2026</small></li>
+              <li role="option" id="opt-pubg-lahore-expo" data-value="pubg-lahore-expo" data-search="pubg pubg event october 24–25, 2026"><strong>PUBG</strong><small>October 24–25, 2026</small></li>
+              <li role="option" id="opt-young-entrepreneur-fest-2026" data-value="young-entrepreneur-fest-2026" data-search="young entrepreneur fest 2026 young entrepreneur fest october 25, 2026"><strong>Young Entrepreneur Fest 2026</strong><small>October 25, 2026</small></li>
+              <li role="option" id="opt-pakistan-agroshow-seed-show" data-value="pakistan-agroshow-seed-show" data-search="3rd pakistan agroshow / 3rd pakistan seed show pakistan agroshow &amp; seed show october 29–31, 2026"><strong>3rd Pakistan AgroShow / 3rd Pakistan Seed Show</strong><small>October 29–31, 2026</small></li>
+              <li role="option" id="opt-solar-energy-storage-ev-fire-safety-expo" data-value="solar-energy-storage-ev-fire-safety-expo" data-search="solar &amp; energy storage, electric vehicles, fire &amp; safety expo solar, ev &amp; fire safety expo november 04–06, 2026"><strong>Solar &amp; Energy Storage, Electric Vehicles, Fire &amp; Safety Expo</strong><small>November 04–06, 2026</small></li>
+              <li role="option" id="opt-itif-asia-industrial-engineering-exhibition" data-value="itif-asia-industrial-engineering-exhibition" data-search="24th international industrial engineering exhibition - itif asia itif asia november 04–06, 2026"><strong>24th International Industrial Engineering Exhibition - ITIF ASIA</strong><small>November 04–06, 2026</small></li>
+              <li role="option" id="opt-educational-arena" data-value="educational-arena" data-search="educational arena educational arena november 13–15, 2026"><strong>Educational Arena</strong><small>November 13–15, 2026</small></li>
+              <li role="option" id="opt-pakistan-industrial-expo" data-value="pakistan-industrial-expo" data-search="10th pakistan industrial expo pakistan industrial expo november 14–16, 2026"><strong>10th Pakistan Industrial Expo</strong><small>November 14–16, 2026</small></li>
+              <li role="option" id="opt-f-plus" data-value="f-plus" data-search="f plus f plus november 21, 2026"><strong>F Plus</strong><small>November 21, 2026</small></li>
+              <li role="option" id="opt-prspak-plastics-rubber-sealant-expo" data-value="prspak-plastics-rubber-sealant-expo" data-search="plastics, rubber and sealant pakistan expo (prspak) prspak expo november 26–28, 2026"><strong>Plastics, Rubber and Sealant Pakistan Expo (PRSPAK)</strong><small>November 26–28, 2026</small></li>
+              <li role="option" id="opt-green-pakistan-expo" data-value="green-pakistan-expo" data-search="green pakistan expo green pakistan expo november 26–28, 2026"><strong>Green Pakistan Expo</strong><small>November 26–28, 2026</small></li>
+              <li role="option" id="opt-iapex-lahore-2026" data-value="iapex-lahore-2026" data-search="iapex lahore 2026 iapex lahore december 04–06, 2026"><strong>IAPEX Lahore 2026</strong><small>December 04–06, 2026</small></li>
+              <li role="option" id="opt-hum-masala-family-festival" data-value="hum-masala-family-festival" data-search="hum masala family festival hum masala family festival january 02–03, 2027"><strong>Hum Masala Family Festival</strong><small>January 02–03, 2027</small></li>
+              <li role="option" id="opt-pakistan-plastic-show" data-value="pakistan-plastic-show" data-search="pakistan plastic show pakistan plastic show january 07–09, 2027"><strong>Pakistan Plastic Show</strong><small>January 07–09, 2027</small></li>
+              <li role="option" id="opt-pakistan-mega-leather-show" data-value="pakistan-mega-leather-show" data-search="12th pakistan mega leather show 2027 pakistan mega leather show january 08–10, 2027"><strong>12th Pakistan Mega Leather Show 2027</strong><small>January 08–10, 2027</small></li>
+              <li role="option" id="opt-gaba-furniture-expo" data-value="gaba-furniture-expo" data-search="gaba furniture expo gaba furniture expo january 15–17, 2027"><strong>Gaba Furniture Expo</strong><small>January 15–17, 2027</small></li>
+              <li role="option" id="opt-lahore-international-book-fair-libf" data-value="lahore-international-book-fair-libf" data-search="lahore international book fair (libf) 2027 lahore book fair libf january 20–24, 2027"><strong>Lahore International Book Fair (LIBF) 2027</strong><small>January 20–24, 2027</small></li>
+              <li role="option" id="opt-pak-pharma-healthcare-expo" data-value="pak-pharma-healthcare-expo" data-search="pak pharma &amp; healthcare expo pak pharma &amp; healthcare expo march 17–19, 2027"><strong>Pak Pharma &amp; Healthcare Expo</strong><small>March 17–19, 2027</small></li>
+              <li role="option" id="opt-pakistan-footwear-material-show" data-value="pakistan-footwear-material-show" data-search="pakistan footwear &amp; material show pakistan footwear show march 26–28, 2027"><strong>Pakistan Footwear &amp; Material Show</strong><small>March 26–28, 2027</small></li>
+              <li role="option" id="opt-pakistan-hvacr-international-expo" data-value="pakistan-hvacr-international-expo" data-search="32nd pakistan hvacr international expo &amp; conference 2027 pakistan hvacr expo april 01–03, 2027"><strong>32nd Pakistan HVACR International Expo &amp; Conference 2027</strong><small>April 01–03, 2027</small></li>
+              <li role="option" id="opt-solar-storage-pakistan" data-value="solar-storage-pakistan" data-search="solar &amp; storage pakistan solar &amp; storage pakistan april 09–11, 2027"><strong>Solar &amp; Storage Pakistan</strong><small>April 09–11, 2027</small></li>
+              <li role="option" id="opt-pakistan-chemical-expo" data-value="pakistan-chemical-expo" data-search="pakistan chemical expo pakistan chemical expo april 22–23, 2027"><strong>Pakistan Chemical Expo</strong><small>April 22–23, 2027</small></li>
+              <li role="option" id="opt-health-asia" data-value="health-asia" data-search="health asia health asia april 22–24, 2027"><strong>Health Asia</strong><small>April 22–24, 2027</small></li>
+              <li role="option" id="opt-ieeep-expo-2027" data-value="ieeep-expo-2027" data-search="ieeep expo 2027 ieeep expo may 06–08, 2027"><strong>IEEEP EXPO 2027</strong><small>May 06–08, 2027</small></li>
+              <li role="option" id="opt-lawn-and-looms-expo-2027" data-value="lawn-and-looms-expo-2027" data-search="lawn &amp; looms expo 2027 lawn &amp; looms expo may 08–09, 2027"><strong>LAWN &amp; LOOMS EXPO 2027</strong><small>May 08–09, 2027</small></li>
+              <li role="option" id="opt-pakistan-coating-show" data-value="pakistan-coating-show" data-search="pakistan coating show pakistan coating show june 03–05, 2027"><strong>Pakistan Coating Show</strong><small>June 03–05, 2027</small></li>
+              <li role="option" id="opt-color-and-chem-expo-2027" data-value="color-and-chem-expo-2027" data-search="12th color &amp; chem expo 2027 color &amp; chem expo august 21–22, 2027"><strong>12th Color &amp; Chem Expo 2027</strong><small>August 21–22, 2027</small></li>
+              <li role="option" id="opt-digital-textile-printing-industry-expo-2027" data-value="digital-textile-printing-industry-expo-2027" data-search="digital textile printing industry expo 2027 digital textile printing expo august 21–22, 2027"><strong>Digital Textile Printing Industry Expo 2027</strong><small>August 21–22, 2027</small></li>
+              <li role="option" id="opt-dairy-asia-expo" data-value="dairy-asia-expo" data-search="dairy asia expo dairy asia expo october 14–16, 2027"><strong>DAIRY ASIA EXPO</strong><small>October 14–16, 2027</small></li>
+            </ul>
+            <p class="combo-empty" id="calcEventEmpty" hidden>No matching event. You can leave this blank and tell us on WhatsApp.</p>
+          </div>
+        </div>
 
         <div class="calc-field">
           <div class="calc-label"><label for="calcHead">Estimated Daily Headcount</label><output id="calcHeadOut" for="calcHead">50</output></div>

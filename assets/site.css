@@ -1807,3 +1807,114 @@ blockquote.quote-card cite {
     font-size: 20px;
   }
 }
+
+/* Searchable event picker (bulk order calculator) */
+.combo {
+  position: relative;
+}
+
+.combo-input {
+  width: 100%;
+  padding: 13px 40px 13px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.combo-input:focus {
+  outline: none;
+  border-color: var(--nosh-green-light);
+  box-shadow: 0 0 0 3px rgba(52, 199, 123, 0.2);
+}
+
+.combo-clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.combo-clear:hover {
+  background: rgba(18, 24, 26, 0.07);
+}
+
+.combo-clear[hidden],
+.combo-list[hidden],
+.combo-empty[hidden] {
+  display: none;
+}
+
+.combo-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.combo-list li {
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.combo-list li[hidden] {
+  display: none;
+}
+
+.combo-list li strong {
+  display: block;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.combo-list li small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.combo-list li:hover,
+.combo-list li.active {
+  background: rgba(52, 199, 123, 0.14);
+}
+
+.combo-empty {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
