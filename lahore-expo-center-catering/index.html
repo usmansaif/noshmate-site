@@ -808,6 +808,36 @@
       rows.forEach(function (r) {
         if (r.getAttribute('data-end') < today) r.hidden = true;
       });
+      var MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+      rows.forEach(function (r) {
+        var end = r.getAttribute('data-end');
+        var m = MONTHS.indexOf(r.querySelector('.expo-date b').textContent.trim().slice(0, 3).toLowerCase());
+        var d = parseInt(r.querySelector('.expo-date').lastChild.textContent, 10);
+        var y = parseInt(end.slice(0, 4), 10);
+        if (m < 0 || isNaN(d)) return;
+        var start = new Date(Date.UTC(y, m, d));
+        if (start > new Date(end + 'T00:00:00Z')) start = new Date(Date.UTC(y - 1, m, d));
+        r.setAttribute('data-start', start.toISOString().slice(0, 10));
+        var badge = document.createElement('span');
+        badge.className = 'expo-live';
+        badge.hidden = true;
+        badge.innerHTML = '<i aria-hidden="true"></i>Live';
+        r.appendChild(badge);
+      });
+      // Live daily 09:00-18:00 Pakistan time between start and end dates
+      function updateLive() {
+        var p = {};
+        new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23' })
+          .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+        var day = p.year + '-' + p.month + '-' + p.day, hr = parseInt(p.hour, 10);
+        rows.forEach(function (r) {
+          var b = r.querySelector('.expo-live');
+          if (!b) return;
+          b.hidden = !(hr >= 9 && hr < 18 && day >= r.getAttribute('data-start') && day <= r.getAttribute('data-end'));
+        });
+      }
+      updateLive();
+      setInterval(updateLive, 60000);
       var live = rows.filter(function (r) { return !r.hidden; });
       var groups = [], map = {};
       live.forEach(function (r) {

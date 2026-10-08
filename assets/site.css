@@ -1562,6 +1562,67 @@ blockquote.quote-card cite {
   display: none;
 }
 
+.expo-row {
+  position: relative;
+}
+
+.expo-live {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 9px 3px 8px;
+  border-radius: 999px;
+  background: #fff1f1;
+  color: #d4121f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.expo-live[hidden] {
+  display: none;
+}
+
+.expo-live i {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e5222e;
+}
+
+.expo-live i::before,
+.expo-live i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #e5222e;
+  opacity: 0.6;
+  animation: expo-live-wave 1.8s ease-out infinite;
+}
+
+.expo-live i::after {
+  animation-delay: 0.9s;
+}
+
+@keyframes expo-live-wave {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expo-live i::before,
+  .expo-live i::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 @media (max-width: 720px) {
   .expo-cal {
     grid-template-columns: 1fr;
