@@ -26,7 +26,7 @@
       ? hits.map(function (it) {
           return '<a href="' + it.u + '"><strong>' + esc(it.t) + '</strong><span>' + esc(it.c) + '</span></a>';
         }).join('')
-      : '<div class="help-empty">No articles found. Try another word, or message us on WhatsApp.</div>';
+      : '<div class="help-empty">No articles found. Try another word, or contact us.</div>';
     box.hidden = false;
   }
 
